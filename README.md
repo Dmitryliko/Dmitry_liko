@@ -14,13 +14,28 @@
 
 ## Установка и Развертывание
 
-### 1. Vercel
-1. Установите Vercel CLI: `npm i -g vercel`
-2. Войдите в аккаунт: `vercel login`
-3. Разверните проект из этой папки: `vercel`
-4. Скопируйте полученный домен (например, `https://my-ziina-tilda.vercel.app`).
+### 1. GitHub и Vercel (Рекомендуемый способ)
+Этот способ обеспечит автоматическое обновление сайта при изменении кода.
 
-### 2. Настройка переменных окружения (Vercel Environment Variables)
+1.  Создайте новый репозиторий на GitHub.
+2.  Выполните команды в терминале для отправки кода:
+    ```bash
+    git remote add origin https://github.com/ВАШ_ПОЛЬЗОВАТЕЛЬ/ВАШ_РЕПОЗИТОРИЙ.git
+    git branch -M main
+    git push -u origin main
+    ```
+3.  Зайдите в [Vercel Dashboard](https://vercel.com/dashboard) -> **Add New Project**.
+4.  Выберите **Import Git Repository** и найдите ваш репозиторий.
+5.  Нажмите **Import**.
+
+### 2. Vercel CLI (Альтернативный способ)
+Если вы не хотите использовать GitHub, можно развернуть напрямую с компьютера:
+1.  Установите Vercel CLI: `npm i -g vercel`
+2.  Войдите в аккаунт: `vercel login`
+3.  Разверните проект из этой папки: `vercel`
+4.  Скопируйте полученный домен (например, `https://my-ziina-tilda.vercel.app`).
+
+### 3. Настройка переменных окружения (Vercel Environment Variables)
 В настройках проекта на Vercel добавьте следующие переменные:
 
 - `ZIINA_API_KEY`: Ваш API ключ от Ziina (Bearer token).
