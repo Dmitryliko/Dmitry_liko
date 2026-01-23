@@ -1,3 +1,7 @@
 {
-  "version": 2
+  "rewrites": [
+    { "source": "/ordersuccess", "destination": "/ordersuccess.html" },
+    { "source": "/api/payment", "destination": "/api/payment.js" },
+    { "source": "/api/webhook", "destination": "/api/webhook.js" }
+  ]
 }
