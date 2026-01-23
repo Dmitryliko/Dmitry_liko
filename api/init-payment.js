@@ -2,22 +2,46 @@ const axios = require('axios');
 
 module.exports = async (req, res) => {
   console.log('Init Payment Request Method:', req.method);
-  console.log('Init Payment Request Body:', JSON.stringify(req.body));
+  
+  // Log body keys to debug what Tilda is actually sending
+  if (req.body) {
+    console.log('Request Body Keys:', Object.keys(req.body));
+    console.log('Request Body Content:', JSON.stringify(req.body));
+  } else {
+    console.error('Request Body is empty!');
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).send('Method Not Allowed');
   }
 
   try {
-    const { amount, orderid, name, email, phone, payment_id } = req.body;
+    // Tilda might send keys in different casing or names
+    const body = req.body || {};
+    const amount = body.amount || body.AMOUNT;
+    const orderid = body.orderid || body.order_id || body.ORDERID || body.orderId;
+    const name = body.name || body.NAME;
+    const email = body.email || body.EMAIL;
+    const phone = body.phone || body.PHONE;
+    
+    // Tilda usually doesn't send payment_id in init request, but just in case
+    const payment_id = body.payment_id || body.PAYMENT_ID;
 
     if (!amount) {
       console.error('Missing amount in request');
       return res.status(400).send('Missing amount');
     }
 
+    if (!orderid) {
+      console.error('Missing orderid in request. Keys received:', Object.keys(body));
+      // We might want to proceed even without orderid if testing, but for Tilda callback it is crucial.
+      // Let's generate a temporary one if missing to avoid breaking the flow completely, 
+      // but notification will fail to link to Tilda order.
+      // Better to fail here so we know something is wrong.
+      return res.status(400).send('Missing orderid');
+    }
+
     // Convert amount to fils (Ziina expects amount in minor units, e.g. 100 AED = 10000 fils)
-    // Tilda usually sends amount as float or string.
     const amountInFils = Math.round(parseFloat(amount) * 100);
 
     const ziinaToken = process.env.ZIINA_API_TOKEN || process.env.ZIINA_API_KEY;
@@ -30,7 +54,7 @@ module.exports = async (req, res) => {
     const host = req.headers['x-forwarded-host'] || req.headers.host;
     const baseUrl = `${protocol}://${host}`;
 
-    console.log('Creating payment intent with amount:', amountInFils);
+    console.log(`Creating payment intent: Amount=${amount}, OrderID=${orderid}`);
 
     const response = await axios.post(
       'https://api-v2.ziina.com/api/payment_intent',
@@ -58,7 +82,6 @@ module.exports = async (req, res) => {
 
     if (response.data && response.data.redirect_url) {
       console.log('Payment intent created, redirecting to:', response.data.redirect_url);
-      // Redirect the user to Ziina payment page
       return res.redirect(303, response.data.redirect_url);
     } else {
       console.error('Ziina response missing redirect_url:', response.data);
