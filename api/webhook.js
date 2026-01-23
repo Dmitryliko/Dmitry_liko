@@ -26,15 +26,15 @@ module.exports = async (req, res) => {
       const tildaLogin = process.env.TILDA_LOGIN || 'ziina_shop';
       const tildaSecret = process.env.TILDA_SECRET;
       
+      if (!tildaSecret) {
+        console.error('TILDA_SECRET is missing in environment variables!');
+      }
+
       // Use the original amount string from metadata if available, otherwise calculate
       let amountStr = metadata.tilda_amount;
       if (!amountStr) {
          // Fallback logic
          amountStr = (paymentIntent.amount / 100).toString();
-         // Check if it needs decimal places? usually integer is safer if no cents.
-         // If it was 10.50, /100 -> 10.5. Tilda might expect 10.50.
-         // Let's try to match what we think Tilda sent.
-         // But really, using metadata.tilda_amount is the only safe way.
       }
 
       const paymentId = paymentIntent.id;
@@ -55,18 +55,21 @@ module.exports = async (req, res) => {
 
       console.log('Sending notification to Tilda:', tildaData);
 
-      // Prioritize TILDA_CALLBACK_URL as seen in user's Vercel config
-      const tildaNotificationUrl = process.env.TILDA_CALLBACK_URL || process.env.TILDA_NOTIFICATION_URL || 'https://forms.tildaapi.com/payment/custom/ps2755493';
+      // Use the CORRECT URL from the screenshot provided by the user.
+      // The one in Vercel env vars (TILDA_CALLBACK_URL) appears to be incorrect/incomplete (forms.tildacdn.com vs forms.tildaapi.com).
+      const tildaNotificationUrl = 'https://forms.tildaapi.com/payment/custom/ps2755493';
+      
+      console.log('Using Tilda URL:', tildaNotificationUrl);
 
       try {
-        await axios.post(tildaNotificationUrl, tildaData);
-        console.log('Tilda notification sent successfully.');
+        const tildaResponse = await axios.post(tildaNotificationUrl, tildaData);
+        console.log('Tilda notification sent successfully. Status:', tildaResponse.status);
+        console.log('Tilda Response Body:', tildaResponse.data);
       } catch (err) {
-        // Even if Tilda returns error (e.g. 200 OK but body "error"), axios might not throw if status is 200.
-        // Tilda often returns "OK" in body.
         console.error('Error sending to Tilda:', err.message);
         if (err.response) {
-            console.error('Tilda response:', err.response.data);
+            console.error('Tilda response status:', err.response.status);
+            console.error('Tilda response data:', err.response.data);
         }
       }
     }
