@@ -55,7 +55,8 @@ module.exports = async (req, res) => {
 
       console.log('Sending notification to Tilda:', tildaData);
 
-      const tildaNotificationUrl = process.env.TILDA_NOTIFICATION_URL || 'https://forms.tildaapi.com/payment/custom/ps2755493';
+      // Prioritize TILDA_CALLBACK_URL as seen in user's Vercel config
+      const tildaNotificationUrl = process.env.TILDA_CALLBACK_URL || process.env.TILDA_NOTIFICATION_URL || 'https://forms.tildaapi.com/payment/custom/ps2755493';
 
       try {
         await axios.post(tildaNotificationUrl, tildaData);
