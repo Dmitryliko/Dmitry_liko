@@ -16,6 +16,14 @@ function normalizeString(value) {
     .toLowerCase();
 }
 
+function isLikelyIncompleteAddress(addressLineRaw) {
+  const raw = addressLineRaw ? String(addressLineRaw).trim() : '';
+  if (!raw) return true;
+  const hasLetter = /[a-zа-яё]/i.test(raw);
+  if (!hasLetter) return true;
+  return false;
+}
+
 function coerceBody(body) {
   if (!body) return {};
   if (typeof body === 'object' && !Buffer.isBuffer(body)) return body;
@@ -351,13 +359,22 @@ async function createDeliveryInIiko({ baseUrl, token, payload }) {
   return res.data;
 }
 
-function buildOrderComment({ cityKey, tildaOrderId, paymentId, deliveryType, extraFields, productsParsed }) {
+function buildOrderComment({
+  cityKey,
+  tildaOrderId,
+  paymentId,
+  deliveryType,
+  deliveryOverrideNote,
+  extraFields,
+  productsParsed
+}) {
   const lines = [];
 
   if (cityKey) lines.push(`Город: ${cityKey}`);
   if (tildaOrderId) lines.push(`Tilda order: ${tildaOrderId}`);
   if (paymentId) lines.push(`Payment: ${paymentId}`);
   if (deliveryType) lines.push(`Доставка: ${deliveryType}`);
+  if (deliveryOverrideNote) lines.push(deliveryOverrideNote);
 
   const timeFields = [];
   if (extraFields.delivery_date) timeFields.push(`Дата: ${extraFields.delivery_date}`);
@@ -489,7 +506,12 @@ module.exports = async (req, res) => {
     };
 
     const deliveryTypeNorm = normalizeString(extraFields.delivery_type);
-    const orderServiceType = deliveryTypeNorm.includes('курьер') ? 'DeliveryByCourier' : 'Pickup';
+    const courierRequested = deliveryTypeNorm.includes('курьер') || deliveryTypeNorm.includes('delivery');
+    const addressIncomplete = courierRequested && isLikelyIncompleteAddress(extraFields.building);
+    const orderServiceType = courierRequested && !addressIncomplete ? 'DeliveryByCourier' : 'Pickup';
+    const deliveryOverrideNote = addressIncomplete
+      ? 'ВНИМАНИЕ: запрошена доставка курьером, но адрес неполный. Создано как самовывоз, нужно уточнить адрес.'
+      : '';
 
     const mapping = await loadMapping();
     const unmapped = [];
@@ -534,6 +556,7 @@ module.exports = async (req, res) => {
       tildaOrderId,
       paymentId,
       deliveryType: extraFields.delivery_type,
+      deliveryOverrideNote,
       extraFields,
       productsParsed
     });
