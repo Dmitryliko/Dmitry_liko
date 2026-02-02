@@ -582,6 +582,10 @@ module.exports = async (req, res) => {
 
     const secret = process.env.TILDA_WEBHOOK_SECRET;
     if (secret) {
+      const expected = String(secret)
+        .split(',')
+        .map((s) => String(s).trim())
+        .filter(Boolean);
       const headerSecret =
         req.headers['x-webhook-secret'] ||
         req.headers['x-tilda-secret'] ||
@@ -593,8 +597,40 @@ module.exports = async (req, res) => {
         urlObj.searchParams.get('token') ||
         urlObj.searchParams.get('apikey') ||
         urlObj.searchParams.get('api_key');
-      const provided = (headerSecret || body.secret || body.token || body.api_key || body.apikey || querySecret || '').toString();
-      if (provided !== secret) return res.status(401).json({ ok: false, requestId, error: 'Unauthorized' });
+      const candidates = [headerSecret, body.secret, body.token, body.api_key, body.apikey, querySecret]
+        .map((v) => (v === undefined || v === null ? '' : String(v).trim()))
+        .filter(Boolean);
+
+      const isAuthorized =
+        expected.length > 0 && candidates.length > 0 && candidates.some((c) => expected.some((e) => e === c));
+
+      if (!isAuthorized) {
+        const candidateHashes = candidates
+          .slice(0, 6)
+          .map((c) => crypto.createHash('sha256').update(c).digest('hex').slice(0, 10));
+        const expectedHashes = expected
+          .slice(0, 6)
+          .map((e) => crypto.createHash('sha256').update(e).digest('hex').slice(0, 10));
+
+        return res.status(401).json({
+          ok: false,
+          requestId,
+          error: 'Unauthorized',
+          authDebug: {
+            expectedCount: expected.length,
+            candidateCount: candidates.length,
+            expectedHashes,
+            candidateHashes,
+            candidateSources: {
+              header: Boolean(headerSecret),
+              bodySecret: Boolean(body.secret),
+              bodyToken: Boolean(body.token),
+              bodyApiKey: Boolean(body.api_key || body.apikey),
+              query: Boolean(querySecret)
+            }
+          }
+        });
+      }
     }
 
     const baseUrl = process.env.IIKO_BASE_URL || 'https://api-ru.iiko.services';
