@@ -2,7 +2,7 @@ const axios = require('axios');
 require('dotenv').config();
 
 const ZIINA_API_TOKEN = process.env.ZIINA_API_TOKEN;
-const WEBHOOK_URL = 'https://tildaavto.vercel.app/api/webhook';
+const WEBHOOK_URL = 'https://integration-iiko.vercel.app/api/webhook';
 
 if (!ZIINA_API_TOKEN) {
   console.error('Error: ZIINA_API_TOKEN is not defined in .env file');

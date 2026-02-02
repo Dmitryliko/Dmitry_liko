@@ -44,6 +44,40 @@ function parseWeightKey(text) {
   return '';
 }
 
+function looksLikeUuid(value) {
+  const s = value ? String(value).trim() : '';
+  if (!s) return false;
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
+}
+
+function pickFirstString(obj, keys) {
+  if (!obj || typeof obj !== 'object') return '';
+  for (const k of keys) {
+    const v = obj[k];
+    if (v === undefined || v === null) continue;
+    const s = String(v).trim();
+    if (s) return s;
+  }
+  return '';
+}
+
+function normalizeModifierField(value) {
+  if (value === null || value === undefined) return '';
+  if (typeof value === 'string' || typeof value === 'number') return String(value).trim();
+  if (Array.isArray(value)) {
+    return value
+      .map((v) => normalizeModifierField(v))
+      .filter(Boolean)
+      .join(', ')
+      .trim();
+  }
+  if (typeof value === 'object') {
+    const s = pickFirstString(value, ['name', 'title', 'value', 'option', 'variant', 'text', 'label']);
+    return s ? String(s).trim() : '';
+  }
+  return String(value).trim();
+}
+
 function parseProducts(productsRaw) {
   if (!productsRaw) return [];
 
@@ -52,8 +86,50 @@ function parseProducts(productsRaw) {
       .map((p) => {
         if (!p) return null;
         const name = p.name || p.title || p.product || p.product_name || '';
-        const modifierText = p.modifier || p.variant || p.option || '';
-        const tildaProductId =
+        const modifierText = normalizeModifierField(p.modifier || p.variant || p.option || '');
+        const externalProductId = pickFirstString(p, [
+          'externalid',
+          'externalId',
+          'external_id',
+          'externalID',
+          'external_code',
+          'externalCode',
+          'external',
+          'extid',
+          'extId',
+          'vendorCode',
+          'vendor_code'
+        ]);
+        const externalVariantId =
+          pickFirstString(p, [
+            'variant_externalid',
+            'variantExternalId',
+            'variant_external_id',
+            'modification_externalid',
+            'modificationExternalId',
+            'modification_external_id',
+            'offer_externalid',
+            'offerExternalId',
+            'offer_external_id'
+          ]) ||
+          pickFirstString(p.variant && typeof p.variant === 'object' ? p.variant : null, [
+            'externalid',
+            'externalId',
+            'external_id',
+            'externalID',
+            'external_code',
+            'externalCode'
+          ]) ||
+          pickFirstString(p.modifier && typeof p.modifier === 'object' ? p.modifier : null, [
+            'externalid',
+            'externalId',
+            'external_id',
+            'externalID',
+            'external_code',
+            'externalCode'
+          ]);
+
+        const tildaProductIdRaw =
           p.tilda_product_id ||
           p.tildaProductId ||
           p.product_id ||
@@ -63,12 +139,22 @@ function parseProducts(productsRaw) {
           p.article ||
           p.code ||
           '';
-        const iikoProductId = p.iiko_product_id || p.iikoProductId || '';
+
+        const tildaIdCandidates = [externalVariantId, externalProductId, tildaProductIdRaw, p.sku, p.article, p.code]
+          .map((v) => (v === undefined || v === null ? '' : String(v).trim()))
+          .filter(Boolean);
+
+        const iikoProductIdRaw = p.iiko_product_id || p.iikoProductId || '';
+        const iikoProductId =
+          (iikoProductIdRaw ? String(iikoProductIdRaw).trim() : '') ||
+          (looksLikeUuid(externalVariantId) ? String(externalVariantId).trim() : '') ||
+          (looksLikeUuid(externalProductId) ? String(externalProductId).trim() : '');
         const quantity = Number(p.quantity || p.amount || 1);
         return {
           raw: JSON.stringify(p),
-          tildaProductId: tildaProductId ? String(tildaProductId).trim() : '',
-          iikoProductId: iikoProductId ? String(iikoProductId).trim() : '',
+          tildaProductId: tildaIdCandidates[0] || '',
+          tildaIdCandidates,
+          iikoProductId,
           name: String(name).trim(),
           modifierText: String(modifierText).trim(),
           weightKey: parseWeightKey(modifierText),
@@ -291,9 +377,11 @@ async function loadMapping() {
   return cachedMapping;
 }
 
-function findIikoProduct({ mapping, cityKey, tildaProductId, name, modifierText, weightKey }) {
+function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText, weightKey }) {
   const cityNorm = normalizeString(cityKey);
-  const idNorm = normalizeString(tildaProductId);
+  const ids = (Array.isArray(tildaProductIds) ? tildaProductIds : [tildaProductIds])
+    .map((v) => normalizeString(v))
+    .filter(Boolean);
   const nameNorm = normalizeString(name);
   const modNorm = normalizeString(modifierText);
   const weightNorm = normalizeString(weightKey);
@@ -301,9 +389,11 @@ function findIikoProduct({ mapping, cityKey, tildaProductId, name, modifierText,
   const byCity = mapping.filter((m) => normalizeString(m.city) === cityNorm);
   if (!byCity.length) return null;
 
-  if (idNorm) {
-    const byId = byCity.find((m) => normalizeString(m.tildaProductId) === idNorm);
-    if (byId && byId.iikoProductId) return byId;
+  if (ids.length) {
+    for (const idNorm of ids) {
+      const byId = byCity.find((m) => normalizeString(m.tildaProductId) === idNorm);
+      if (byId && byId.iikoProductId) return byId;
+    }
   }
 
   const byName = byCity.find((m) => {
@@ -356,6 +446,68 @@ async function createDeliveryInIiko({ baseUrl, token, payload }) {
     timeout: 20000,
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
   });
+  return res.data;
+}
+
+function formatIikoDateTime(date) {
+  if (!(date instanceof Date) || Number.isNaN(date.valueOf())) return null;
+  return date.toISOString().replace('T', ' ').replace('Z', '');
+}
+
+async function findExistingDeliveryOrderIdByPhoneAndExternalNumber({
+  baseUrl,
+  token,
+  organizationId,
+  phone,
+  externalNumber
+}) {
+  const phoneStr = phone ? String(phone).trim() : '';
+  const extStr = externalNumber ? String(externalNumber).trim() : '';
+  if (!phoneStr || !extStr) return null;
+
+  const now = Date.now();
+  const from = new Date(now - 7 * 24 * 60 * 60 * 1000);
+  const to = new Date(now + 24 * 60 * 60 * 1000);
+
+  const deliveryDateFrom = formatIikoDateTime(from);
+  const deliveryDateTo = formatIikoDateTime(to);
+
+  const res = await axios.post(
+    `${baseUrl}/api/1/deliveries/by_delivery_date_and_phone`,
+    {
+      phone: phoneStr,
+      deliveryDateFrom,
+      deliveryDateTo,
+      organizationIds: [organizationId],
+      rowsCount: 50
+    },
+    {
+      timeout: 20000,
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+    }
+  );
+
+  const groups = (res.data && res.data.ordersByOrganizations) || [];
+  for (const g of groups) {
+    const orders = (g && g.orders) || [];
+    for (const o of orders) {
+      const oExt = o && o.externalNumber ? String(o.externalNumber).trim() : '';
+      if (oExt === extStr && o.id) return String(o.id);
+    }
+  }
+
+  return null;
+}
+
+async function changeDeliveryOrderPayments({ baseUrl, token, organizationId, orderId, payments }) {
+  const res = await axios.post(
+    `${baseUrl}/api/1/deliveries/change_payments`,
+    { organizationId, orderId, payments },
+    {
+      timeout: 20000,
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+    }
+  );
   return res.data;
 }
 
@@ -419,16 +571,7 @@ module.exports = async (req, res) => {
 
   try {
     const body = coerceBody(req.body);
-
-    const secret = process.env.TILDA_WEBHOOK_SECRET;
-    if (secret) {
-      const headerSecret =
-        req.headers['x-webhook-secret'] ||
-        req.headers['x-tilda-secret'] ||
-        req.headers['x-tilda-webhook-secret'];
-      const provided = (headerSecret || body.secret || body.token || '').toString();
-      if (provided !== secret) return res.status(401).json({ ok: false, requestId, error: 'Unauthorized' });
-    }
+    const urlObj = new URL(req.url, 'http://localhost');
 
     const bodyKeys = Object.keys(body || {});
     const onlyAuthFields =
@@ -437,10 +580,26 @@ module.exports = async (req, res) => {
       return res.status(200).json({ ok: true, requestId });
     }
 
+    const secret = process.env.TILDA_WEBHOOK_SECRET;
+    if (secret) {
+      const headerSecret =
+        req.headers['x-webhook-secret'] ||
+        req.headers['x-tilda-secret'] ||
+        req.headers['x-tilda-webhook-secret'] ||
+        req.headers['x-api-key'] ||
+        req.headers['x-apikey'];
+      const querySecret =
+        urlObj.searchParams.get('secret') ||
+        urlObj.searchParams.get('token') ||
+        urlObj.searchParams.get('apikey') ||
+        urlObj.searchParams.get('api_key');
+      const provided = (headerSecret || body.secret || body.token || body.api_key || body.apikey || querySecret || '').toString();
+      if (provided !== secret) return res.status(401).json({ ok: false, requestId, error: 'Unauthorized' });
+    }
+
     const baseUrl = process.env.IIKO_BASE_URL || 'https://api-ru.iiko.services';
     const citiesConfig = loadCitiesConfig();
 
-    const urlObj = new URL(req.url, 'http://localhost');
     const urlCity = urlObj.searchParams.get('city');
     const urlProjectId = urlObj.searchParams.get('projectid') || urlObj.searchParams.get('projectId');
     const bodyProjectId =
@@ -525,7 +684,7 @@ module.exports = async (req, res) => {
       const found = findIikoProduct({
         mapping,
         cityKey: effectiveCity,
-        tildaProductId: product.tildaProductId,
+        tildaProductIds: product.tildaIdCandidates || [product.tildaProductId],
         name: product.name,
         modifierText: product.modifierText,
         weightKey: product.weightKey
@@ -579,15 +738,47 @@ module.exports = async (req, res) => {
     };
 
     const isPaid = inferIsPaid({ body, paymentId });
-    if (cityCfg.paymentTypeId && total && isPaid) {
-      orderPayload.order.payments = [
-        {
-          paymentTypeKind: cityCfg.paymentTypeKind || 'Card',
-          sum: total,
-          paymentTypeId: cityCfg.paymentTypeId,
-          isProcessedExternally: true
-        }
-      ];
+    const payments =
+      cityCfg.paymentTypeId && total && isPaid
+        ? [
+            {
+              paymentTypeKind: cityCfg.paymentTypeKind || 'Card',
+              sum: total,
+              paymentTypeId: cityCfg.paymentTypeId,
+              isProcessedExternally: true
+            }
+          ]
+        : null;
+
+    if (payments) {
+      const existingId = await findExistingDeliveryOrderIdByPhoneAndExternalNumber({
+        baseUrl,
+        token,
+        organizationId: cityCfg.organizationId,
+        phone: sanitizePhone(extraFields.phone),
+        externalNumber
+      });
+
+      if (existingId) {
+        const changePaymentsResponse = await changeDeliveryOrderPayments({
+          baseUrl,
+          token,
+          organizationId: cityCfg.organizationId,
+          orderId: existingId,
+          payments
+        });
+
+        return res.status(200).json({
+          ok: true,
+          requestId,
+          city: effectiveCity,
+          mappedItems: iikoItems.length,
+          unmappedItems: unmapped.map((u) => ({ name: u.name, modifierText: u.modifierText, raw: u.raw })),
+          iiko: { updatedPayments: true, orderId: existingId, changePaymentsResponse }
+        });
+      }
+
+      orderPayload.order.payments = payments;
     }
 
     const iikoResponse = await createDeliveryInIiko({ baseUrl, token, payload: orderPayload });

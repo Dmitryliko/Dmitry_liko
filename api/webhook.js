@@ -15,6 +15,13 @@ function coerceBody(body) {
   }
 }
 
+function getRawBodyText(body) {
+  if (!body) return '';
+  if (Buffer.isBuffer(body)) return body.toString('utf8');
+  if (typeof body === 'string') return body;
+  return '';
+}
+
 function normalizeString(value) {
   if (value === null || value === undefined) return '';
   return String(value)
@@ -28,6 +35,69 @@ function safeString(obj, key) {
   const v = obj ? obj[key] : undefined;
   if (v === undefined || v === null) return '';
   return String(v);
+}
+
+function isCloudPaymentsWebhook({ req, parsedBody }) {
+  const hmacHeader =
+    req.headers['x-content-hmac'] ||
+    req.headers['content-hmac'] ||
+    req.headers['X-Content-HMAC'] ||
+    req.headers['Content-HMAC'];
+  if (hmacHeader) return true;
+
+  const keys = Object.keys(parsedBody || {});
+  const normalizedKeys = new Set(keys.map((k) => normalizeString(k)));
+  if (normalizedKeys.has('transactionid') || normalizedKeys.has('invoiceid') || normalizedKeys.has('accountid')) {
+    return true;
+  }
+
+  return false;
+}
+
+function buildSortedQuery(bodyObj, { encode }) {
+  const entries = Object.entries(bodyObj || {}).map(([k, v]) => [String(k), v === undefined || v === null ? '' : String(v)]);
+  entries.sort((a, b) => a[0].localeCompare(b[0]));
+  const pairs = [];
+  for (const [k, v] of entries) {
+    const key = encode ? encodeURIComponent(k) : k;
+    const val = encode ? encodeURIComponent(v) : v;
+    pairs.push(`${key}=${val}`);
+  }
+  return pairs.join('&');
+}
+
+function checkCloudPaymentsHmac({ rawBodyText, parsedBody, secret, headerHmac }) {
+  if (!secret) return { ok: true, reason: 'no_secret' };
+  const provided = (headerHmac || '').toString().trim();
+  if (!provided) return { ok: false, reason: 'missing_header' };
+
+  const variants = [];
+  if (rawBodyText) {
+    variants.push(rawBodyText);
+    try {
+      variants.push(decodeURIComponent(rawBodyText));
+    } catch (_) {}
+  } else {
+    variants.push(buildSortedQuery(parsedBody, { encode: true }));
+    variants.push(buildSortedQuery(parsedBody, { encode: false }));
+  }
+
+  const computed = variants.map((v) => crypto.createHmac('sha256', secret).update(String(v), 'utf8').digest('base64'));
+  const ok = computed.some((c) => c === provided);
+  return { ok, reason: ok ? 'match' : 'mismatch', computed };
+}
+
+function parseCloudPaymentsDataField(dataRaw) {
+  if (!dataRaw) return null;
+  if (typeof dataRaw === 'object' && !Buffer.isBuffer(dataRaw)) return dataRaw;
+  const text = Buffer.isBuffer(dataRaw) ? dataRaw.toString('utf8') : String(dataRaw);
+  const trimmed = text.trim();
+  if (!trimmed) return null;
+  try {
+    return JSON.parse(trimmed);
+  } catch (_) {
+    return null;
+  }
 }
 
 async function sendPaidOrderToIiko({ req, metadata, paymentIntent }) {
@@ -102,9 +172,71 @@ module.exports = async (req, res) => {
   }
 
   try {
+    const rawBodyText = getRawBodyText(req.body);
     const event = coerceBody(req.body);
 
     console.log('Received webhook:', JSON.stringify(event, null, 2));
+
+    if (isCloudPaymentsWebhook({ req, parsedBody: event })) {
+      const cloudPaymentsSecret = process.env.CLOUDPAYMENTS_WEBHOOK_SECRET || '';
+      const headerHmac = req.headers['x-content-hmac'] || req.headers['content-hmac'] || '';
+      const hmacCheck = checkCloudPaymentsHmac({
+        rawBodyText,
+        parsedBody: event,
+        secret: cloudPaymentsSecret,
+        headerHmac
+      });
+
+      if (!hmacCheck.ok) {
+        console.log('CloudPayments HMAC mismatch');
+        return res.status(401).json({ code: 13 });
+      }
+
+      const successNorm = normalizeString(event.Success || event.success);
+      const statusNorm = normalizeString(event.Status || event.status);
+      const isSuccess =
+        successNorm === 'true' ||
+        successNorm === '1' ||
+        statusNorm === 'completed' ||
+        statusNorm === 'success' ||
+        statusNorm === 'confirmed' ||
+        statusNorm === 'paid';
+
+      if (!isSuccess) {
+        return res.status(200).json({ code: 0 });
+      }
+
+      const invoiceId = safeString(event, 'InvoiceId') || safeString(event, 'invoiceId') || safeString(event, 'invoiceid');
+      const amountStr = safeString(event, 'Amount') || safeString(event, 'amount');
+      const transactionId =
+        safeString(event, 'TransactionId') || safeString(event, 'transactionId') || safeString(event, 'transactionid');
+      const dataObj = parseCloudPaymentsDataField(event.Data || event.data);
+
+      const metadata = {
+        tilda_order_id: invoiceId,
+        tilda_amount: amountStr,
+        tilda_payload: dataObj && dataObj.tilda_payload ? dataObj.tilda_payload : null
+      };
+
+      const paymentIntent = {
+        id: transactionId || invoiceId || '',
+        amount: amountStr,
+        status: 'paid',
+        metadata
+      };
+
+      const enableIikoOnPaymentWebhook = normalizeString(process.env.ENABLE_IIKO_ON_PAYMENT_WEBHOOK) === 'true';
+      if (enableIikoOnPaymentWebhook && metadata.tilda_order_id && metadata.tilda_payload) {
+        try {
+          const { result: iikoResult } = await sendPaidOrderToIiko({ req, metadata, paymentIntent });
+          console.log('iiko create result:', JSON.stringify(iikoResult, null, 2));
+        } catch (err) {
+          console.error('Error sending paid order to iiko:', err.response?.data || err.message);
+        }
+      }
+
+      return res.status(200).json({ code: 0 });
+    }
 
     let paymentIntent = event.payment_intent || event;
 
