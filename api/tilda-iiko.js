@@ -162,13 +162,14 @@ function inferCityKey({ urlCity, projectId, projectIdToCity, bodyCity, referer, 
 
   const hostStr = host ? String(host) : '';
   if (hostStr) {
-    const hostNoPort = hostStr.split(':')[0].trim();
+    const firstHost = hostStr.split(',')[0].trim();
+    const hostNoPort = firstHost.split(':')[0].trim();
     const hostLower = hostNoPort.toLowerCase();
     const ignoreHostCity =
-      hostLower.endsWith('vercel.app') ||
-      hostLower.endsWith('now.sh') ||
-      hostLower.endsWith('ngrok.io') ||
-      hostLower.endsWith('ngrok-free.app') ||
+      hostLower.includes('vercel.app') ||
+      hostLower.includes('now.sh') ||
+      hostLower.includes('ngrok.io') ||
+      hostLower.includes('ngrok-free.app') ||
       hostLower === 'localhost' ||
       hostLower === '127.0.0.1';
     if (!ignoreHostCity) {
