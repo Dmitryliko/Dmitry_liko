@@ -100,6 +100,153 @@ function parseCloudPaymentsDataField(dataRaw) {
   }
 }
 
+function sanitizePhone(phoneRaw) {
+  const str = phoneRaw ? String(phoneRaw) : '';
+  const digits = str.replace(/[^\d+]/g, '');
+  if (!digits) return '';
+  if (digits.startsWith('+')) return digits;
+  if (digits.startsWith('8') && digits.length === 11) return `+7${digits.slice(1)}`;
+  if (digits.startsWith('7') && digits.length === 11) return `+${digits}`;
+  return digits.startsWith('+') ? digits : `+${digits}`;
+}
+
+function formatIikoDateTime(date) {
+  if (!(date instanceof Date) || Number.isNaN(date.valueOf())) return null;
+  return date.toISOString().replace('T', ' ').replace('Z', '');
+}
+
+function loadCitiesConfigRaw() {
+  const raw = process.env.TILDA_IIKO_CITIES_JSON || '';
+  if (!raw.trim()) return { defaultCity: '', cities: {} };
+  try {
+    const parsed = JSON.parse(raw);
+    return {
+      defaultCity: parsed.defaultCity ? String(parsed.defaultCity) : '',
+      cities: parsed.cities && typeof parsed.cities === 'object' ? parsed.cities : {}
+    };
+  } catch (_) {
+    return { defaultCity: '', cities: {} };
+  }
+}
+
+async function getIikoToken({ baseUrl, apiLogin }) {
+  const res = await axios.post(
+    `${baseUrl}/api/1/access_token`,
+    { apiLogin },
+    { timeout: 15000, headers: { 'Content-Type': 'application/json' } }
+  );
+
+  const token = res.data && (res.data.token || res.data.accessToken || res.data.access_token);
+  if (!token) throw new Error('IIKO access token missing in response');
+  return token;
+}
+
+async function findExistingDeliveryOrderIdByPhoneAndExternalNumber({
+  baseUrl,
+  token,
+  organizationId,
+  phone,
+  externalNumber
+}) {
+  const phoneStr = phone ? String(phone).trim() : '';
+  const extStr = externalNumber ? String(externalNumber).trim() : '';
+  if (!phoneStr || !extStr) return null;
+
+  const now = Date.now();
+  const from = new Date(now - 7 * 24 * 60 * 60 * 1000);
+  const to = new Date(now + 24 * 60 * 60 * 1000);
+
+  const deliveryDateFrom = formatIikoDateTime(from);
+  const deliveryDateTo = formatIikoDateTime(to);
+
+  const res = await axios.post(
+    `${baseUrl}/api/1/deliveries/by_delivery_date_and_phone`,
+    {
+      phone: phoneStr,
+      deliveryDateFrom,
+      deliveryDateTo,
+      organizationIds: [organizationId],
+      rowsCount: 50
+    },
+    {
+      timeout: 20000,
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+    }
+  );
+
+  const groups = (res.data && res.data.ordersByOrganizations) || [];
+  for (const g of groups) {
+    const orders = (g && g.orders) || [];
+    for (const o of orders) {
+      const oExt = o && o.externalNumber ? String(o.externalNumber).trim() : '';
+      if (oExt === extStr && o.id) return String(o.id);
+    }
+  }
+
+  return null;
+}
+
+async function changeDeliveryOrderPayments({ baseUrl, token, organizationId, orderId, payments }) {
+  const res = await axios.post(
+    `${baseUrl}/api/1/deliveries/change_payments`,
+    { organizationId, orderId, payments },
+    {
+      timeout: 20000,
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+    }
+  );
+  return res.data;
+}
+
+async function applyPaymentToIikoByInvoiceAndPhone({ baseUrl, invoiceId, phone, amount }) {
+  const phoneSan = sanitizePhone(phone);
+  if (!invoiceId || !phoneSan || !amount) return { ok: false, reason: 'missing_invoice_or_phone_or_amount' };
+
+  const citiesConfig = loadCitiesConfigRaw();
+  const cities = citiesConfig.cities && typeof citiesConfig.cities === 'object' ? citiesConfig.cities : {};
+  const cityEntries = Object.entries(cities);
+  if (!cityEntries.length) return { ok: false, reason: 'no_cities_configured' };
+
+  for (const [cityKey, cityCfg] of cityEntries) {
+    if (!cityCfg || !cityCfg.apiLogin || !cityCfg.organizationId || !cityCfg.paymentTypeId) continue;
+    try {
+      const token = await getIikoToken({ baseUrl, apiLogin: cityCfg.apiLogin });
+      const orderId = await findExistingDeliveryOrderIdByPhoneAndExternalNumber({
+        baseUrl,
+        token,
+        organizationId: cityCfg.organizationId,
+        phone: phoneSan,
+        externalNumber: invoiceId
+      });
+
+      if (!orderId) continue;
+
+      const payments = [
+        {
+          paymentTypeKind: cityCfg.paymentTypeKind || 'Card',
+          sum: amount,
+          paymentTypeId: cityCfg.paymentTypeId,
+          isProcessedExternally: true
+        }
+      ];
+
+      const changePaymentsResponse = await changeDeliveryOrderPayments({
+        baseUrl,
+        token,
+        organizationId: cityCfg.organizationId,
+        orderId,
+        payments
+      });
+
+      return { ok: true, city: cityKey, orderId, changePaymentsResponse };
+    } catch (err) {
+      continue;
+    }
+  }
+
+  return { ok: false, reason: 'order_not_found' };
+}
+
 async function sendPaidOrderToIiko({ req, metadata, paymentIntent }) {
   const tildaIiko = require('./tilda-iiko');
 
@@ -207,6 +354,7 @@ module.exports = async (req, res) => {
       }
 
       const invoiceId = safeString(event, 'InvoiceId') || safeString(event, 'invoiceId') || safeString(event, 'invoiceid');
+      const accountId = safeString(event, 'AccountId') || safeString(event, 'accountId') || safeString(event, 'accountid');
       const amountStr = safeString(event, 'Amount') || safeString(event, 'amount');
       const transactionId =
         safeString(event, 'TransactionId') || safeString(event, 'transactionId') || safeString(event, 'transactionid');
@@ -226,12 +374,29 @@ module.exports = async (req, res) => {
       };
 
       const enableIikoOnPaymentWebhook = normalizeString(process.env.ENABLE_IIKO_ON_PAYMENT_WEBHOOK) === 'true';
-      if (enableIikoOnPaymentWebhook && metadata.tilda_order_id && metadata.tilda_payload) {
-        try {
-          const { result: iikoResult } = await sendPaidOrderToIiko({ req, metadata, paymentIntent });
-          console.log('iiko create result:', JSON.stringify(iikoResult, null, 2));
-        } catch (err) {
-          console.error('Error sending paid order to iiko:', err.response?.data || err.message);
+      if (enableIikoOnPaymentWebhook) {
+        const baseUrl = process.env.IIKO_BASE_URL || 'https://api-ru.iiko.services';
+        const amountNum = Number(String(amountStr).replace(',', '.').replace(/[^\d.]/g, ''));
+
+        if (metadata.tilda_order_id && metadata.tilda_payload) {
+          try {
+            const { result: iikoResult } = await sendPaidOrderToIiko({ req, metadata, paymentIntent });
+            console.log('iiko create result:', JSON.stringify(iikoResult, null, 2));
+          } catch (err) {
+            console.error('Error sending paid order to iiko:', err.response?.data || err.message);
+          }
+        } else {
+          try {
+            const paymentApplyResult = await applyPaymentToIikoByInvoiceAndPhone({
+              baseUrl,
+              invoiceId: metadata.tilda_order_id,
+              phone: accountId,
+              amount: Number.isFinite(amountNum) && amountNum > 0 ? amountNum : null
+            });
+            console.log('iiko payment apply result:', JSON.stringify(paymentApplyResult, null, 2));
+          } catch (err) {
+            console.error('Error applying payment to iiko:', err.response?.data || err.message);
+          }
         }
       }
 
