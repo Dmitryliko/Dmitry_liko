@@ -1,0 +1,106 @@
+ID: e256fddc-6102-4baa-bc71-7e0d20f0d44f | Name: Кавкавзкий набор: Три пирога | Type: Dish | OrderItemType: Product
+ID: cdfc2e1a-8ca1-406c-b507-4981723881d5 | Name: Осетинский пирог с маком и сухофруктами  | Type: Dish | OrderItemType: Compound
+ID: 1d24b4bc-eda2-4cdd-b4c7-f25694435c32 | Name: Осетинский пирог с вишней  | Type: Dish | OrderItemType: Compound
+ID: e140f5bf-d227-40de-86ba-a00d3cb27fc6 | Name: Осетинский пирог с творогом и малиной  | Type: Dish | OrderItemType: Compound
+ID: 81789d56-c0fc-4c60-bb6b-14ce86f41307 | Name: Осетинский пирог с черной смородиной | Type: Dish | OrderItemType: Compound
+ID: 61bf1f00-753b-4ce0-9029-3e9b3955339c | Name: Осетинский пирог с яблоком, орехом и изюмом  | Type: Dish | OrderItemType: Compound
+ID: 10b123c7-0dd4-4d08-a2f5-b80ae6c27617 | Name: Осет. пирог с рубл. говяд. и инжир | Type: Dish | OrderItemType: Product
+ID: f692875f-110e-43d8-82e0-acfe1fb6f663 | Name: Осетинский пирог с говяжьим фаршем | Type: Dish | OrderItemType: Compound
+ID: 1efb4e98-94e0-471b-b382-e7f9bd730ebe | Name: Осетинский пирог с говяжьим фаршем и капустой | Type: Dish | OrderItemType: Compound
+ID: bd98befb-9488-471f-bc7f-b36b85a4f35b | Name: Осетинский пирог с говяжьим фаршем и картофелем | Type: Dish | OrderItemType: Compound
+ID: ed59ca81-26f3-446d-b86f-db92ad9d2915 | Name: Осетинский пирог с домашним фаршем | Type: Dish | OrderItemType: Compound
+ID: ab1f51ad-1208-41f2-9370-4e226e1428f6 | Name: Осетинский пирог с капустой | Type: Dish | OrderItemType: Compound
+ID: 566d2c9a-8dd5-46e5-8b4d-0b9cd5fb680d | Name: Осетинский пирог с капустой и орехом | Type: Dish | OrderItemType: Compound
+ID: 9e67e092-0829-43f5-9585-0d6fb1a36d80 | Name: Осетинский пирог с картофелем | Type: Dish | OrderItemType: Compound
+ID: 942e9a3c-5a33-4278-9d9d-33b67b66eec6 | Name: Осетинский пирог с картофелем и грибами | Type: Dish | OrderItemType: Compound
+ID: fd7151f1-6e0c-4c17-ad6f-540756d4fca4 | Name: Осетинский пирог с картофелем и сыром | Type: Dish | OrderItemType: Compound
+ID: 68346824-f27e-4347-b27c-52e095719487 | Name: Осетинский пирог с красной рыбой | Type: Dish | OrderItemType: Compound
+ID: 42ed9dc5-f736-4b73-adc8-92015aab8c65 | Name: Осетинский пирог с курицей и грибами | Type: Dish | OrderItemType: Compound
+ID: 725cdb3d-7986-4e4f-9d1b-062275a7bec8 | Name: Осетинский пирог с рубленой говядиной  | Type: Dish | OrderItemType: Compound
+ID: 72cf49d8-b43d-41af-9115-9e4cad871ca9 | Name: Осетинский пирог с сыром и зеленью | Type: Dish | OrderItemType: Compound
+ID: 2bac9f65-bd55-477a-b49a-a50ce45d10d9 | Name: Осетинский пирог с сыром и свекольными листьями | Type: Dish | OrderItemType: Compound
+ID: de5d3d2e-f604-4140-bb5a-8e1e49204973 | Name: Осетинский пирог с сыром сулугуни | Type: Dish | OrderItemType: Compound
+ID: 32a5e1f5-11e8-4548-a43f-6cadc2ed6ad6 | Name: Афинский пирог с карамелизированной грушей, имберем и корицей | Type: Dish | OrderItemType: Compound
+ID: e3bbc94b-52bb-4c95-ab9a-07ae72281ced | Name: Балийский пирог с ЛИМОНОМ И КОКОСОМ | Type: Dish | OrderItemType: Compound
+ID: 4afc47d5-c3ec-42ae-9984-7b11241f7e21 | Name: Вьетнамский пирог с МАНГО И КИВИ  | Type: Dish | OrderItemType: Compound
+ID: fd603dd3-991e-45ab-b92b-d65f3c16c17d | Name: Галисийский пирог МИНДАЛЬНЫЙ С ГРУШЕЙ  | Type: Dish | OrderItemType: Compound
+ID: e57333f1-a649-4c32-94b8-de82237f79b9 | Name: Испанский абрикосовый пирог | Type: Dish | OrderItemType: Compound
+ID: 83b783e9-d593-433b-bb1d-64ae70ba624e | Name: Карибский грейпфруктово-банановый пирог | Type: Dish | OrderItemType: Product
+ID: 1516e2b9-c3d8-469b-b03a-e3626f7a824d | Name: Лондонский ТЫКВЕННЫЙ пирог | Type: Dish | OrderItemType: Compound
+ID: 2fd16b3a-09cf-43b5-aa88-d6fdfed12606 | Name: Польский пирог с МАКОМ и ТВОРОЖНЫМ СЫРОМ | Type: Dish | OrderItemType: Compound
+ID: 6c3bfe23-1de0-4c6c-a029-f077a88d4c3f | Name: Румынский пирог с ТВОРОГОМ и ЧЕРНОЙ СМОРОДИНОЙ | Type: Dish | OrderItemType: Compound
+ID: 3114ae46-2f26-47f5-887b-f85cde1c5099 | Name: Финский пирог с НАТУРАЛЬНОЙ ЛЕСНОЙ ЧЕРНИКОЙ  | Type: Dish | OrderItemType: Compound
+ID: 68e4297c-bbe7-4570-a22d-330bfaf95293 | Name: Французский пирог с грушей и сыром Дорблю | Type: Dish | OrderItemType: Compound
+ID: 481330e0-0d74-4f16-aecf-5e2faf6e4655 | Name: Чикагский брауни шоколадный пирог с брусникой и грецким орехом | Type: Dish | OrderItemType: Compound
+ID: b3586ce7-b6d3-498b-8041-10aaccbf0d1f | Name: Швейцарский пирог с ФИСТАШКОЙ и МАЛИНОЙ | Type: Dish | OrderItemType: Compound
+ID: a80e6ecb-3479-47ba-a221-d1dde5e7b8f3 | Name: Амстердамский пирог | Type: Dish | OrderItemType: Compound
+ID: 03386486-54d9-4713-be37-ee7525d4003f | Name: Атлантический пирог со скумбрией  | Type: Dish | OrderItemType: Compound
+ID: 5fd69471-ed6d-4038-8cb5-861206243fe7 | Name: Белорусский пирог с картофелем и грибами | Type: Dish | OrderItemType: Compound
+ID: f29619dd-6cc5-4ba1-bb97-ef1f4e95cdf6 | Name: Британский пирог с индейкой, томатами и голыбым сыром | Type: Dish | OrderItemType: Compound
+ID: 4627e8a3-652c-4dc4-a25c-2582d40e05cf | Name: Брюссельский пирог с брокколи, шпинатом и цветной капустой | Type: Dish | OrderItemType: Compound
+ID: 3a912dcd-61d4-4080-9dc7-05893f697567 | Name: Греческий пирог с творожным сыром и шпинатом | Type: Dish | OrderItemType: Compound
+ID: cf3eb36a-1a94-4daa-a6ac-d5ab494216ac | Name: Ирландский пирог с ФАРШЕМ ИЗ ГОВЯДИНЫ И СВИНИНЫ | Type: Dish | OrderItemType: Compound
+ID: 54f2df29-182e-4ca5-b6b8-9c956e0b4e4c | Name: Лоранский пирог с КУРИЦЕЙ и ШАМПИНЬОНАМИ | Type: Dish | OrderItemType: Compound
+ID: 73bc1631-6625-437a-be0a-3d2df1410082 | Name: Мексиканский пирог с ФАРШЕМ,ФАСОЛЬЮ,КУКУРУЗОЙ и ПЕРЦЕМ ЧИЛИ | Type: Dish | OrderItemType: Compound
+ID: f8e714a0-7cd8-4e65-a2a8-b72b22f49f32 | Name: Мюнхенский пирогс колбасками | Type: Dish | OrderItemType: Compound
+ID: 3bdbf23e-0728-43ed-98f5-94ae2d347a0c | Name: Немецкий Цвибелькухен ЛУКОВЫЙ ПИРОГ | Type: Dish | OrderItemType: Compound
+ID: 4b3d6363-7f2d-450e-8f45-19c6666ab5f7 | Name: Турецкий пирог НУТОВЫЙ с томатами  | Type: Dish | OrderItemType: Compound
+ID: 09607c27-373e-4bc6-b6c4-4f0e00654ddb | Name: Украинский пирог с капустой и яйцом | Type: Dish | OrderItemType: Compound
+ID: a9dc4395-2b22-4e59-bf7d-a40f0cb57c1a | Name: Шведский пирог с КАРТОФЕЛЕМ и ГРУДИНКОЙ  | Type: Dish | OrderItemType: Compound
+ID: ce0c4db9-95c2-4e07-a468-8e4e63fd86ae | Name: Шотландский пирог с ИНДЕЙКОЙ и КАРТОФЕЛЕМ | Type: Dish | OrderItemType: Compound
+ID: a805fc2f-2a5f-4c50-a980-9d0fd0c6da2c | Name: Лоранский пирог с КУРИЦЕЙ и ШАМПИНЬОНАМИ | Type: Dish | OrderItemType: Compound
+ID: 057dd369-29c3-4e81-b883-cc108de94e63 | Name: Осетинский пирог с картофелем и сыром | Type: Dish | OrderItemType: Compound
+ID: 96b72dbc-b05e-4738-bc57-7d9bafdfa87b | Name: Осетинский пирог с картофелем | Type: Dish | OrderItemType: Compound
+ID: 59e96269-294d-456b-940f-2efc8d261dc0 | Name: Осетинский пирог с яблоком, орехом и изюмом  | Type: Dish | OrderItemType: Compound
+ID: 87f1b525-e852-4856-a0fa-bff4a4f4b6c8 | Name: Шведский пирог с КАРТОФЕЛЕМ и ГРУДИНКОЙ  | Type: Dish | OrderItemType: Compound
+ID: 6d20072d-8cfd-43f0-8c25-8cc8522d55ba | Name: Швейцарский пирог с ФИСТАШКОЙ и МАЛИНОЙ | Type: Dish | OrderItemType: Compound
+ID: 44946045-fadf-448a-9262-0bbb115171e5 | Name: Сдобный пирог с яблоком и брусникой | Type: Dish | OrderItemType: Compound
+ID: 505cd41a-e2f8-44b9-8775-0d1339e11299 | Name: Сдобный пирог с лесными ягодами | Type: Dish | OrderItemType: Compound
+ID: b19587a7-87a8-4b4f-bbc3-63e13bd84632 | Name: Сдобный пирог с натуральным творогом и вишней | Type: Dish | OrderItemType: Compound
+ID: a4ca7707-407b-4a4f-9455-74a66dfd0a01 | Name: Сдобный пирог с натуральной вишней | Type: Dish | OrderItemType: Compound
+ID: 78ff542c-a58a-4f24-873d-9566e8bced3c | Name: Сдобный пирог с малиной и натуральным творогом | Type: Dish | OrderItemType: Compound
+ID: 440ba029-b69a-449f-a09e-a2ea358f6384 | Name: Сдобный пирог с курятиной и шампиньонами | Type: Dish | OrderItemType: Compound
+ID: 51b93aea-848e-4ba4-81cf-b7bb961dd6c7 | Name: Сдобный пирог с капустой и рубленым яйцом | Type: Dish | OrderItemType: Compound
+ID: b981b4ad-a1a9-44e3-b14e-4c5d149d1cfc | Name: Сдобный пирог с мясным фаршем, болгарским перцем и свежей капустой | Type: Dish | OrderItemType: Compound
+ID: 4c2e78d0-16e4-4a25-9960-f79519d7d8b7 | Name: Сдобный пирог с болгарским перцем, баклажанами и томатами | Type: Dish | OrderItemType: Compound
+ID: ec318dcb-9f5f-4389-bab5-062075f55b3d | Name: Сдобный пирог с фаршем из отборного мяса | Type: Dish | OrderItemType: Compound
+ID: fc4da32f-fe03-4e8c-908b-276bb766aaa1 | Name: Сдобный пирог с курочкой, рубленым яйцом и рисом | Type: Dish | OrderItemType: Compound
+ID: 0d08b84d-c3d0-4d79-9237-dbb32c055099 | Name: Сдобный пирог с фаршем и картофелем | Type: Dish | OrderItemType: Compound
+ID: ec317ae4-1231-4bd8-9337-cfbcac7049ef | Name: Сдобный пирог с картофелем и сыром благородной плесени | Type: Dish | OrderItemType: Compound
+ID: cdbfde81-6153-4228-9048-109667d45b7c | Name: Сдобный пирог с красной рыбой и сливочным сыром | Type: Dish | OrderItemType: Compound
+ID: 3e0ba128-320c-4db8-b64d-6fa550fcfc1b | Name: Сдобный пирог с творогом и шпинатом | Type: Dish | OrderItemType: Compound
+ID: c7c9913f-a4ce-4fcf-99f1-6f0e33ffe711 | Name: Слоено-дрожжевой пирог с яблоком и брусникой | Type: Dish | OrderItemType: Compound
+ID: c8bbc546-30f1-4e4d-948e-5a63324b2fa5 | Name: Слоено-дрожжевой пирог с лесными ягодами | Type: Dish | OrderItemType: Compound
+ID: d2fa7085-be16-49f9-b871-f1619ae43a4c | Name: Слоено-дрожжевой пирог с натуральным творогом и вишней | Type: Dish | OrderItemType: Compound
+ID: c5410eeb-fd0c-47c2-b734-74b573531b5c | Name: Слоено-дрожжевой пирог с натуральной вишней | Type: Dish | OrderItemType: Compound
+ID: fa6a888e-6131-4602-b5ec-f67179d42514 | Name: Слоено-дрожжевой пирог с малиной и натуральным творогом | Type: Dish | OrderItemType: Compound
+ID: 03375f3d-7f4a-4922-9748-165c0235a3bb | Name: Слоено-дрожжевой пирог с курятиной и шампиньонами | Type: Dish | OrderItemType: Compound
+ID: 59a200d7-336b-4570-8d1f-3577af55a51c | Name: Слоено-дрожжевой пирог с капустой и рубленым яйцом | Type: Dish | OrderItemType: Compound
+ID: c74a0c1d-becf-4efc-a3f9-4bfd17b59b24 | Name: Слоено-дрожжевой пирог с мясным фаршем, болгарским перцем и свежей капустой | Type: Dish | OrderItemType: Compound
+ID: e8fb5a35-8f82-4d48-acc0-1a4acd789e1d | Name: Слоено-дрожжевой пирог с болгарским перцем, баклажанами и томатами | Type: Dish | OrderItemType: Compound
+ID: 0c366eeb-3a62-475b-86db-5eaf77677286 | Name: Слоено-дрожжевой пирог с фаршем из отборного мяса | Type: Dish | OrderItemType: Compound
+ID: 310d3642-36bb-414d-b84f-8f76b7bbd4ba | Name: Слоено-дрожжевой пирог с курочкой, рубленым яйцом и рисом | Type: Dish | OrderItemType: Compound
+ID: 0dac1c7f-b0f9-4185-8411-eb9ef6543060 | Name: Слоено-дрожжевой пирог с фаршем и картофелем | Type: Dish | OrderItemType: Compound
+ID: 1dace3e8-fa2b-4044-9db8-23ff4d31eda9 | Name: Слоено-дрожжевой пирог с картофелем и сыром благородной плесени | Type: Dish | OrderItemType: Compound
+ID: fdf85840-c4bb-4229-8b8f-00b26de1265b | Name: Слоено-дрожжевой пирог с красной рыбой  и сливочным сыром | Type: Dish | OrderItemType: Compound
+ID: 9116563f-25bc-49b8-a084-89e5fd4c1b2f | Name: Слоено-дрожжевой пирог с творогом и шпинатом | Type: Dish | OrderItemType: Compound
+ID: 5fd69471-ed6d-4038-8cb5-861206243fe7 | Name: Белорусский пирог с картофелем и грибами | Type: Dish | OrderItemType: Product
+ID: 4627e8a3-652c-4dc4-a25c-2582d40e05cf | Name: Брюссельский пирог с брокколи, шпинатом и цветной капустой | Type: Dish | OrderItemType: Product
+ID: 989657ca-6234-428f-9cac-c6ce7bec3783 | Name: Осетинский пирог с вишней  | Type: Modifier | OrderItemType: Product
+ID: b84fc09e-901b-4dec-b1ac-8469f1cbf38d | Name: Осетинский пирог с сыром сулугуни | Type: Modifier | OrderItemType: Product
+ID: 650e1826-f1e6-4a42-b5c1-038821a4644e | Name: Осетинский пирог с говяжьим фаршем | Type: Modifier | OrderItemType: Product
+ID: 65505c37-4d2b-4451-bb7f-49a22a8a872f | Name: 1/4 С/д пирог с яблоком и брусникой | Type: Modifier | OrderItemType: Product
+ID: ffd9863f-1581-4a37-b65b-98d34ca04e6a | Name: 1/4 С/д пирог с натуральным творогом и вишней | Type: Modifier | OrderItemType: Product
+ID: c56abe8a-930f-4312-8f7c-401e0997856e | Name: 1/4 С/д пирог с лесными ягодами | Type: Modifier | OrderItemType: Product
+ID: de7a8c64-d5cd-4680-a759-74b8e0828efd | Name: 1/4 С/д пирог с малиной и натуральным творогом | Type: Modifier | OrderItemType: Product
+ID: 19e9f859-aaf5-4efc-b9fb-696c9edbc6c4 | Name: 1/4 С/д пирог с капустой и рубленым яйцом | Type: Modifier | OrderItemType: Product
+ID: 8cb64598-f3f0-4337-a2cb-e276c7a927a2 | Name: 1/4 С/д пирог с горбушей и сливочным сыром | Type: Modifier | OrderItemType: Product
+ID: 8f665fd6-730e-4cfa-9d75-465b406ebc36 | Name: 1/4 С/д пирог с курятиной и шампиньонами | Type: Modifier | OrderItemType: Product
+ID: 3301b4ca-74be-416b-be7d-c2a5dbf77a19 | Name: 1/4 С/д пирог с курочкой, рубленым яйцом и рисом | Type: Modifier | OrderItemType: Product
+ID: 21ed4a39-8489-4a65-a963-9cee14cd7daa | Name: 1/4 С/д пирог с фаршем из отборного мяса | Type: Modifier | OrderItemType: Product
+ID: e51b309c-414c-401e-8901-166009072191 | Name: 1/4 С/д пирог с болгарским перцем, баклажанами и томатами | Type: Modifier | OrderItemType: Product
+ID: d58f3b3c-674d-4a13-8672-eee67393f3e3 | Name: Слоено-дрожжевой пирог с фаршем из отборного мяса | Type: Modifier | OrderItemType: Product
+ID: aec74f4e-6312-4b33-8d4b-22456b816c70 | Name: Слоено-дрожжевой пирог с капустой и рубленым яйцом | Type: Modifier | OrderItemType: Product
+ID: 6d5ea594-1486-4927-a15f-c3e49aad30af | Name: Слоено-дрожжевой пирог с яблоком и брусникой | Type: Modifier | OrderItemType: Product
+ID: eb5626b9-45b0-4bee-ab32-cbb1ca23f7c2 | Name: С/д пирог с курочкой, рубленым яйцом и рисом | Type: Modifier | OrderItemType: Product
+ID: cddfe618-ca79-4143-be29-cccc6385f6f8 | Name: Слоено-дрожжевой пирог с натуральной вишней | Type: Modifier | OrderItemType: Product
