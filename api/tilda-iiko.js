@@ -796,7 +796,18 @@ module.exports = async (req, res) => {
 
     const externalNumber = tildaOrderId ? String(tildaOrderId).slice(0, 50) : String(Date.now());
 
-    const token = await getIikoToken({ baseUrl, apiLogin: cityCfg.apiLogin });
+    let token;
+    try {
+      token = await getIikoToken({ baseUrl, apiLogin: cityCfg.apiLogin });
+    } catch (tokenErr) {
+       console.error('Token error:', tokenErr.message);
+       return res.status(401).json({
+         ok: false,
+         error: 'Failed to get iiko token',
+         details: tokenErr.message,
+         loginPrefix: cityCfg.apiLogin ? cityCfg.apiLogin.slice(0, 4) + '***' : 'MISSING'
+       });
+    }
 
     const orderPayload = {
       organizationId: cityCfg.organizationId,
