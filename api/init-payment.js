@@ -39,10 +39,49 @@ module.exports = async (req, res) => {
 
     // Check result
     if (responseStatus >= 200 && responseStatus < 300 && responseData && responseData.ok) {
-      console.log('Order processed successfully via tilda-iiko. Redirecting to success page.');
-      // Redirect to Tilda success page or local success page
-      // Assuming /ordersuccess.html exists or is handled by Vercel rewrites
-      return res.redirect(303, '/ordersuccess.html');
+      console.log('Order processed successfully via tilda-iiko.');
+      
+      // DEBUG MODE: Show details instead of redirecting
+      const iikoData = responseData.iiko || {};
+      const orderId = (iikoData.orderInfo && iikoData.orderInfo.id) || 'Не найден в ответе';
+      const externalNumber = (iikoData.orderInfo && iikoData.orderInfo.externalNumber) || 'Не найден';
+      const creationStatus = (iikoData.orderInfo && iikoData.orderInfo.creationStatus) || 'Неизвестен';
+      
+      const html = `
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Заказ отправлен в iiko</title>
+            <style>
+              body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+              .success { color: green; font-weight: bold; font-size: 1.2em; }
+              .box { background: #f0f0f0; padding: 15px; border-radius: 5px; margin: 10px 0; }
+              pre { white-space: pre-wrap; word-wrap: break-word; }
+            </style>
+          </head>
+          <body>
+            <h1 class="success">✅ Заказ успешно отправлен в iiko!</h1>
+            <p>Сделайте скриншот этой страницы и отправьте в поддержку, если заказа нет на кассе.</p>
+            
+            <div class="box">
+              <p><strong>ID заказа (iiko):</strong> ${orderId}</p>
+              <p><strong>Внешний номер:</strong> ${externalNumber}</p>
+              <p><strong>Статус создания:</strong> ${creationStatus}</p>
+            </div>
+
+            <h3>Полный ответ от iiko (Техническая информация):</h3>
+            <div class="box">
+              <pre>${JSON.stringify(responseData, null, 2)}</pre>
+            </div>
+            
+            <br>
+            <a href="/ordersuccess.html" style="font-size: 1.2em;">Перейти на страницу "Спасибо за заказ"</a>
+          </body>
+        </html>
+      `;
+      
+      return res.status(200).send(html);
+      // return res.redirect(303, '/ordersuccess.html');
     } else {
       console.error('tilda-iiko handler returned error:', responseStatus, responseData);
       const errorMsg = responseData && responseData.error ? responseData.error : 'Unknown error';
