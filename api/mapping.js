@@ -993,6 +993,16 @@ module.exports = [
   },
   {
     "city": "msk",
+    "tildaName": "Шотландский пирог с ИНДЕЙКОЙ и КАРТОФЕЛЕМ",
+    "iikoProductId": "ce0c4db9-95c2-4e07-a468-8e4e63fd86ae"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Шотландский пирог",
+    "iikoProductId": "ce0c4db9-95c2-4e07-a468-8e4e63fd86ae"
+  },
+  {
+    "city": "msk",
     "tildaName": "Сдобный пирог с яблоком и брусникой",
     "iikoProductId": "44946045-fadf-448a-9262-0bbb115171e5",
     "type": "Compound",
