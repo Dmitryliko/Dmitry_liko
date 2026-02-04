@@ -656,7 +656,7 @@ module.exports = async (req, res) => {
 
     const pageId = safeString(body, 'pageid') || safeString(body, 'page_id') || safeString(body, 'PAGEID') || '';
 
-    const referer = safeString(body, 'referer') || req.headers.referer || '';
+    const referer = safeString(body, 'referer') || (req.headers && req.headers.referer) || '';
     const cityKey = inferCityKey({
       urlCity,
       projectId,
@@ -710,7 +710,7 @@ module.exports = async (req, res) => {
       
     const paymentId = body.paymentid || body.payment_id || body.PAYMENT_ID || '';
 
-    let rawProducts = body.products || body.PRODUCTS;
+    let rawProducts = body.products || body.PRODUCTS || body.items || body.ITEMS;
     if (!rawProducts && paymentObj && paymentObj.products) {
       rawProducts = paymentObj.products;
     }

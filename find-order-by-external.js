@@ -8,7 +8,7 @@ async function findOrderByExternal() {
     return;
   }
 
-  const externalNumber = '1842409877';
+  const externalNumber = '1872453119';
 
   try {
     console.log('Getting token...');
