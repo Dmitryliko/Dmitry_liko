@@ -1355,5 +1355,18 @@ module.exports = [
     "city": "msk",
     "tildaName": "Калифорнийский клубничный пай",
     "iikoProductId": "2baf1773-6796-4aad-9fbc-e321533edf29"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Ирландский пирог с фаршем из говядины и свинины",
+    "iikoProductId": "cf3eb36a-1a94-4daa-a6ac-d5ab494216ac",
+    "type": "Compound",
+    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+    "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Шотландский пирог с ИНДЕЙКОЙ и КАРТОФЕЛЕМ",
+    "iikoProductId": "ce0c4db9-95c2-4e07-a468-8e4e63fd86ae"
   }
 ];

@@ -919,6 +919,21 @@ module.exports = async (req, res) => {
         });
       }
 
+      // Safety check: prevent overwriting existing orders with "Mors" (fallback) if webhook payload was incomplete
+      // Only applies if we are in "Payment Mode" (payments exists) and we failed to find the existing order ID
+      // This protects against the scenario where a payment webhook arrives with an empty/invalid cart,
+      // triggering the fallback product logic, and iiko overwrites the existing order because the externalNumber matches.
+      const isAllFallback = fallbackProductId && iikoItems.length > 0 && iikoItems.every(item => item.productId === fallbackProductId);
+      if (isAllFallback) {
+         console.warn(`[Safety] Preventing creation of Fallback-Only order during payment processing. ExternalNumber: ${externalNumber}`);
+         return res.status(200).json({
+           ok: true,
+           skipped: true,
+           reason: 'safety_abort_fallback_overwrite',
+           message: 'Payment received but order not found and payload implies empty cart (fallback only). Skipped to prevent overwrite.'
+         });
+      }
+
       orderPayload.order.payments = payments;
     }
 

@@ -1,0 +1,28 @@
+{
+  "organizationId": "6fd820ff-65a0-40d6-8309-83d6425aaf2e",
+  "terminalGroupId": "16405536-0b9a-30e4-017e-dea16b460064",
+  "order": {
+    "externalNumber": "ORDER-12345",
+    "orderServiceType": "DeliveryByCourier",
+    "phone": "+79991234567",
+    "customer": {
+      "name": "Test Client"
+    },
+    "items": [
+      {
+        "type": "Compound",
+        "primaryComponent": {
+          "productId": "70291db1-a0fc-49df-a625-762c919cbf99"
+        },
+        "template": {
+          "id": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b"
+        },
+        "size": {
+          "id": "7c23e0c5-ef2e-4a16-8653-15918a7807d7"
+        },
+        "amount": 1,
+        "price": 500
+      }
+    ]
+  }
+}

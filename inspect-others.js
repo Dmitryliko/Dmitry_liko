@@ -35,16 +35,22 @@ async function inspectOtherProducts() {
     console.log(`Total products: ${products.length}`);
     console.log(`Total groups: ${groups.length}`);
 
-    const searchTerms = ['шотландский', 'чешский', 'пирог', 'киш'];
+    const searchTerms = ['шотландский', 'чешский', 'пирог', 'киш', '18355'];
     
     const matches = products.filter(p => {
         const name = p.name.toLowerCase();
-        return searchTerms.some(term => name.includes(term));
+        const code = p.code ? String(p.code) : '';
+        const sku = p.sku ? String(p.sku) : '';
+        const article = p.article ? String(p.article) : '';
+        
+        return searchTerms.some(term => 
+          name.includes(term) || code.includes(term) || sku.includes(term) || article.includes(term)
+        );
     });
 
     console.log('--- Matches ---');
     matches.forEach(p => {
-        console.log(`ID: ${p.id} | Name: ${p.name} | Type: ${p.type} | Parent: ${p.parentGroup}`);
+        console.log(`ID: ${p.id} | Name: ${p.name} | Type: ${p.type} | Code: ${p.code} | SKU: ${p.sku}`);
     });
     console.log('----------------');
 
