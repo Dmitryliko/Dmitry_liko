@@ -741,7 +741,7 @@ module.exports = async (req, res) => {
     const deliveryTypeNorm = normalizeString(extraFields.delivery_type);
     const courierRequested = deliveryTypeNorm.includes('курьер') || deliveryTypeNorm.includes('delivery');
     const addressIncomplete = courierRequested && isLikelyIncompleteAddress(extraFields.building);
-    const orderServiceType = courierRequested && !addressIncomplete ? 'DeliveryByCourier' : 'Pickup';
+    const orderServiceType = courierRequested && !addressIncomplete ? 'DeliveryByCourier' : 'DeliveryByClient';
     const deliveryOverrideNote = addressIncomplete
       ? 'ВНИМАНИЕ: запрошена доставка курьером, но адрес неполный. Создано как самовывоз, нужно уточнить адрес.'
       : '';
