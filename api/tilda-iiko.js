@@ -78,6 +78,14 @@ function normalizeModifierField(value) {
   return String(value).trim();
 }
 
+function parsePrice(val) {
+  if (val === undefined || val === null) return 0;
+  if (typeof val === 'number') return val;
+  const s = String(val).replace(',', '.').replace(/[^\d.]/g, '');
+  const n = Number(s);
+  return Number.isFinite(n) ? n : 0;
+}
+
 function parseProducts(productsRaw) {
   if (!productsRaw) return [];
 
@@ -150,7 +158,7 @@ function parseProducts(productsRaw) {
           (looksLikeUuid(externalVariantId) ? String(externalVariantId).trim() : '') ||
           (looksLikeUuid(externalProductId) ? String(externalProductId).trim() : '');
         const quantity = Number(p.quantity || p.amount || 1);
-        const price = Number(p.price || p.amount || 0);
+        const price = parsePrice(p.price || p.amount);
         return {
           raw: JSON.stringify(p),
           tildaProductId: tildaIdCandidates[0] || '',

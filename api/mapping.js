@@ -9,6 +9,14 @@ module.exports = [
   },
   {
     city: 'msk',
+    tildaName: 'Шотландский пирог с ИНДЕЙКОЙ и КАРТОФЕЛЕМ',
+    iikoProductId: 'ce0c4db9-95c2-4e07-a468-8e4e63fd86ae',
+    type: 'Compound',
+    modifierSchemaId: '0d0d70f2-ce97-4f83-9ff4-0a49cc31029b', // Размер
+    sizeId: '7c23e0c5-ef2e-4a16-8653-15918a7807d7' // 24 см (стандарт)
+  },
+  {
+    city: 'msk',
     tildaName: 'Шотландский пирог',
     iikoProductId: 'ce0c4db9-95c2-4e07-a468-8e4e63fd86ae',
     type: 'Compound',
