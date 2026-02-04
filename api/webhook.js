@@ -373,7 +373,7 @@ module.exports = async (req, res) => {
         metadata
       };
 
-      const enableIikoOnPaymentWebhook = normalizeString(process.env.ENABLE_IIKO_ON_PAYMENT_WEBHOOK) === 'true';
+      const enableIikoOnPaymentWebhook = process.env.ENABLE_IIKO_ON_PAYMENT_WEBHOOK !== 'false';
       if (enableIikoOnPaymentWebhook) {
         const baseUrl = process.env.IIKO_BASE_URL || 'https://api-ru.iiko.services';
         const amountNum = Number(String(amountStr).replace(',', '.').replace(/[^\d.]/g, ''));
