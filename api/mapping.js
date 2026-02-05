@@ -37,6 +37,16 @@ module.exports = [
   },
   {
     "city": "msk",
+    "tildaName": "Английский крамбл",
+    "iikoProductId": "6e557c21-6ffd-4beb-ae82-9b26d077d457",
+    "type": "Compound",
+    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+    "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+    "tildaSku": "15606",
+    "comment": "Added short name variant"
+  },
+  {
+    "city": "msk",
     "tildaName": "Атлантический пирог",
     "iikoProductId": "03386486-54d9-4713-be37-ee7525d4003f",
     "type": "Compound",
@@ -142,6 +152,16 @@ module.exports = [
     "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
     "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
     "tildaSku": "15644"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Греческий пирог",
+    "iikoProductId": "3a912dcd-61d4-4080-9dc7-05893f697567",
+    "type": "Compound",
+    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+    "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+    "tildaSku": "15644",
+    "comment": "Added short name variant"
   },
   {
     "city": "msk",
