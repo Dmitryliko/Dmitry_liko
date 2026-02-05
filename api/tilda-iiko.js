@@ -313,7 +313,7 @@ function inferCityKey({ urlCity, projectId, pageId, projectIdToCity, pageIdToCit
   return '';
 }
 
-const citiesConfig = require('./cities-config');
+const citiesConfig = require('../lib/cities-config');
 
 function loadCitiesConfig() {
   // Use local config file instead of environment variable
@@ -390,7 +390,7 @@ async function loadMapping() {
 
   // Try to load from local file first
   try {
-    const localMapping = require('./mapping');
+    const localMapping = require('../lib/mapping');
     if (localMapping && Array.isArray(localMapping) && localMapping.length > 0) {
       cachedMapping = localMapping;
       cachedMappingLoadedAtMs = now;
