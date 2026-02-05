@@ -1,0 +1,71 @@
+{
+  "correlationId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+  "orderInfo": {
+    "id": "c1e80222-f57c-4f4b-8078-4d9dd428b68d",
+    "externalNumber": "1140349168",
+    "organizationId": "6fd820ff-65a0-40d6-8309-83d6425aaf2e",
+    "timestamp": 1707079200000,
+    "creationStatus": "Success",
+    "errorInfo": null,
+    "order": {
+      "parentDeliveryId": null,
+      "customer": {
+        "id": "e6f7g8h9-i0j1-k2l3-m4n5-o6p7q8r9s0t1",
+        "name": "аннатест",
+        "surname": null,
+        "comment": null,
+        "birthdate": null,
+        "email": "ania.volckova2015@mail.ru",
+        "shouldReceivePromoMessages": false,
+        "gender": "NotSpecified"
+      },
+      "phone": "+79045501567",
+      "deliveryPoint": {
+        "coordinates": null,
+        "address": {
+          "street": {
+            "id": "u1v2w3x4-y5z6-a7b8-c9d0-e1f2g3h4i5j6",
+            "name": "Самовывоз (г. Москва, Можайское шоссе 71, ТЦ Дубрава)",
+            "city": "Москва"
+          },
+          "house": "",
+          "building": "",
+          "flat": "",
+          "entrance": "",
+          "floor": "",
+          "doorphone": ""
+        },
+        "externalCartographyId": null,
+        "comment": "Самовывоз"
+      },
+      "status": "New",
+      "items": [
+        {
+          "product": {
+            "id": "70291db1-a0fc-49df-a625-762c919cbf99",
+            "name": "Лионский киш",
+            "code": "0001",
+            "type": "Dish"
+          },
+          "price": 1361,
+          "amount": 1,
+          "comment": null,
+          "type": "Product"
+        }
+      ],
+      "payments": [
+        {
+          "paymentType": {
+            "id": "09322f46-578a-d210-add7-eec2229263c6",
+            "name": "Наличные",
+            "kind": "Cash"
+          },
+          "sum": 1361,
+          "isProcessedExternally": false
+        }
+      ],
+      "orderServiceType": "DeliveryByCourier",
+      "deliveryDate": null
+    }
+  }
+}
