@@ -25,9 +25,11 @@ async function fetchData() {
         console.log('Saved nomenclature-fresh.json');
 
         // Fetch External Menu
-        console.log('Fetching External Menu...');
+        console.log('Fetching External Menu (ID: 62778)...');
         const menuRes = await axios.post(`${BASE_URL}/api/2/menu/by_id`, {
-            organizationIds: [ORG_ID]
+            organizationIds: [ORG_ID],
+            externalMenuId: "62778",
+            priceCategoryId: "00000000-0000-0000-0000-000000000000"
         }, {
             headers: { Authorization: `Bearer ${token}` }
         });
