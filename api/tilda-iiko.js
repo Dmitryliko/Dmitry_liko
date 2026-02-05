@@ -415,7 +415,7 @@ async function loadMapping() {
   return cachedMapping;
 }
 
-function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText, weightKey }) {
+function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText, weightKey, price }) {
   const cityNorm = normalizeString(cityKey);
   const ids = (Array.isArray(tildaProductIds) ? tildaProductIds : [tildaProductIds])
     .map((v) => normalizeString(v))
@@ -438,7 +438,8 @@ function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText
     }
   }
 
-  const byName = byCity.find((m) => {
+  // Find all candidates by name
+  const candidates = byCity.filter((m) => {
     if (normalizeString(m.tildaName) !== nameNorm) return false;
 
     const mModRaw = m.tildaModifier || '';
@@ -450,8 +451,33 @@ function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText
     return mMod === modNorm;
   });
 
-  if (byName && byName.iikoProductId) return byName;
-  return null;
+  if (candidates.length === 0) return null;
+
+  // Filter by price if provided and candidate has price limits
+  if (price !== undefined && price !== null && price > 0) {
+    const priceMatch = candidates.find(m => {
+        // If mapping has minPrice/maxPrice, check it
+        if (m.minPrice !== undefined || m.maxPrice !== undefined) {
+            const min = m.minPrice !== undefined ? m.minPrice : 0;
+            const max = m.maxPrice !== undefined ? m.maxPrice : Infinity;
+            return price >= min && price <= max;
+        }
+        return false; // If no price constraints, keep looking or fallback?
+    });
+
+    if (priceMatch) return priceMatch;
+    
+    // If we have price constraints on SOME candidates but none matched, 
+    // maybe we should NOT return the generic one? 
+    // Current logic: try to find exact price match.
+    // If not found, fall back to the first one WITHOUT price constraints?
+    
+    const unconstrained = candidates.find(m => m.minPrice === undefined && m.maxPrice === undefined);
+    if (unconstrained) return unconstrained;
+  }
+
+  // Fallback: return first candidate (legacy behavior)
+  return candidates[0];
 }
 
 function sanitizePhone(phoneRaw) {
@@ -624,7 +650,7 @@ function safeString(obj, key) {
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('X-Code-Version', '2026-02-05-v3-size-fix');
+  res.setHeader('X-Code-Version', '2026-02-05-v4-price-logic');
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   const requestId = crypto.randomBytes(8).toString('hex');
@@ -838,7 +864,8 @@ module.exports = async (req, res) => {
           tildaProductIds: product.tildaIdCandidates || [product.tildaProductId],
           name: product.name,
           modifierText: product.modifierText,
-          weightKey: product.weightKey
+          weightKey: product.weightKey,
+          price: product.price // Pass price for disambiguation
         });
         if (found && found.iikoProductId) {
           targetIikoId = found.iikoProductId;
