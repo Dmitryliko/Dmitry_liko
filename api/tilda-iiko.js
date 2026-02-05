@@ -777,9 +777,9 @@ module.exports = async (req, res) => {
 
     let cityCfg = (citiesConfig.cities && citiesConfig.cities[effectiveCity]) || null;
 
-    // Fallbacks removed to prevent unknown projects from defaulting to Moscow
-    /*
-    if (!cityCfg && defaultCityNorm && effectiveCity !== defaultCityNorm) {
+    // Fallback logic restored to handle Pickup/Direct orders without explicit city
+    if (!cityCfg && defaultCityNorm && (!effectiveCity || effectiveCity !== defaultCityNorm)) {
+      console.log(`[CityInference] City '${effectiveCity}' not found. Falling back to default '${defaultCityNorm}'.`);
       effectiveCity = defaultCityNorm;
       cityCfg = (citiesConfig.cities && citiesConfig.cities[effectiveCity]) || null;
     }
@@ -787,11 +787,11 @@ module.exports = async (req, res) => {
     if (!cityCfg && citiesConfig.cities && typeof citiesConfig.cities === 'object') {
       const keys = Object.keys(citiesConfig.cities);
       if (keys.length === 1) {
+        console.log(`[CityInference] No specific city found. Defaulting to single configured city '${keys[0]}'.`);
         effectiveCity = keys[0];
         cityCfg = citiesConfig.cities[effectiveCity] || null;
       }
     }
-    */
 
     if (!cityCfg) {
       return res.status(400).json({ ok: false, requestId, error: 'Unknown city', city: effectiveCity });
