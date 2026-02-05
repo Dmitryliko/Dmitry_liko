@@ -843,6 +843,17 @@ module.exports = async (req, res) => {
         if (found && found.iikoProductId) {
           targetIikoId = found.iikoProductId;
         }
+
+        // HOTFIX: Explicit check for Czech Pie to ensure it works even if mapping file is stale
+        if (!targetIikoId && normalizeString(product.name).includes('чешский пирог')) {
+            targetIikoId = "4519eb01-8930-4538-a03d-fd84d9b6a7a3";
+            found = {
+                type: 'Compound',
+                iikoProductId: targetIikoId,
+                modifierSchemaId: "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+                sizeId: "7c23e0c5-ef2e-4a16-8653-15918a7807d7"
+            };
+        }
       }
 
       // If we have an ID but no mapping found yet (e.g. ID came from Tilda directly),
