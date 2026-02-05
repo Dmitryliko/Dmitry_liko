@@ -1421,5 +1421,41 @@ module.exports = [
     "tildaName": "Эклер",
     "iikoProductId": "ebaeac98-0de7-4473-b845-b52e84bed312",
     "tildaSku": "18210"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Греческий пирог",
+    "iikoProductId": "3a912dcd-61d4-4080-9dc7-05893f697567",
+    "type": "Compound",
+    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+    "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+    "tildaSku": "15644"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Шведский пирог",
+    "iikoProductId": "87f1b525-e852-4856-a0fa-bff4a4f4b6c8",
+    "type": "Compound",
+    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+    "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+    "tildaSku": "18161"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Ирландский пирог",
+    "iikoProductId": "cf3eb36a-1a94-4daa-a6ac-d5ab494216ac",
+    "type": "Compound",
+    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+    "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+    "tildaSku": "15645"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Шотландский пирог",
+    "iikoProductId": "ce0c4db9-95c2-4e07-a468-8e4e63fd86ae",
+    "type": "Compound",
+    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+    "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+    "tildaSku": "15554"
   }
 ];
