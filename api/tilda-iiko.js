@@ -426,7 +426,10 @@ function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText
 
   if (ids.length) {
     for (const idNorm of ids) {
-      const byId = byCity.find((m) => normalizeString(m.tildaProductId) === idNorm);
+      const byId = byCity.find((m) => 
+        normalizeString(m.tildaProductId) === idNorm || 
+        normalizeString(m.tildaSku) === idNorm
+      );
       if (byId && byId.iikoProductId) return byId;
     }
   }
