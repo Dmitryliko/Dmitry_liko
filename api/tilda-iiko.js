@@ -916,29 +916,20 @@ module.exports = async (req, res) => {
 
       if (targetIikoId) {
         // Mapped item
-        if (found && found.type === 'Compound' && found.sizeId && found.modifierSchemaId) {
-           // Standard "Product" with Modifiers approach requested by user
-           // We map the Size to a Modifier
-           // NOTE: This assumes sizeId can be treated as a modifierId or we have to find a way to pass it.
-           // However, for iiko Transport API, "modifiers" array expects { productId, amount, productGroupId? }.
-           // If sizeId is NOT a product ID, this might fail if we just put it in productId.
-           // BUT, based on user request "send as modifiers", we will try to format it as a Product with modifiers.
-           // The structure for modifiers is: items: [{ type: 'Product', modifiers: [{ productId: ..., amount: 1, productGroupId: ... }] }]
-           
-           iikoItems.push({
-            type: 'Product',
-            productId: targetIikoId,
-            amount: product.quantity,
-            price: product.price,
-            modifiers: [
-                {
-                    productId: found.sizeId,
-                    amount: 1,
-                    productGroupId: found.modifierSchemaId
-                }
-            ]
-          });
-        } else {
+        if (found && found.type === 'Compound' && found.sizeId) {
+               // FIX: Use 'productSizeId' at top level for Compound items with size
+               // Verified with test_compound_structure.js
+               
+               iikoItems.push({
+                type: 'Compound',
+                primaryComponent: {
+                    productId: targetIikoId
+                },
+                productSizeId: found.sizeId,
+                amount: product.quantity,
+                price: product.price
+              });
+            } else {
           iikoItems.push({ 
             type: 'Product', 
             productId: targetIikoId, 
