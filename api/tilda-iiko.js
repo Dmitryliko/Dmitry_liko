@@ -445,7 +445,8 @@ function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText
 
   // 2. If no ID candidates, find by Name
   if (candidates.length === 0) {
-      candidates = byCity.filter((m) => {
+      // 2a. Strict matching (Name + Modifier)
+      const strictCandidates = byCity.filter((m) => {
         if (normalizeString(m.tildaName) !== nameNorm) return false;
 
         const mModRaw = m.tildaModifier || '';
@@ -456,6 +457,21 @@ function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText
         if (mWeight && weightNorm) return normalizeString(mWeight) === weightNorm;
         return mMod === modNorm;
       });
+
+      if (strictCandidates.length > 0) {
+          candidates = strictCandidates;
+      } else {
+          // 2b. Loose matching: Name match + ignore modifier IF mapping has price constraints and no modifier requirement
+          // This handles cases where Tilda sends "Size 18cm" in modifier, but mapping relies on Price to distinguish sizes
+          candidates = byCity.filter((m) => {
+              if (normalizeString(m.tildaName) !== nameNorm) return false;
+              // Only allow loose matching if mapping has explicit price constraints AND does not enforce a specific modifier
+              if ((m.minPrice !== undefined || m.maxPrice !== undefined) && !m.tildaModifier) {
+                  return true;
+              }
+              return false;
+          });
+      }
   }
 
   if (candidates.length === 0) return null;
@@ -658,7 +674,7 @@ function safeString(obj, key) {
 
 module.exports = async (req, res) => {
   // Set code version header for debugging
-  res.setHeader('X-Code-Version', 'Hotfix v9 (Czech Pie RESTORED with user data)');
+    res.setHeader('X-Code-Version', 'Hotfix v10 (Loose Name Matching for Price-based items)');
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   const requestId = crypto.randomBytes(8).toString('hex');
