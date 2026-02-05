@@ -382,6 +382,13 @@ module.exports = [
   },
   {
     "city": "msk",
+    "tildaName": "Остров Гулливера",
+    "iikoProductId": "70291db1-a0fc-49df-a625-762c919cbf99",
+    "tildaSku": "15648",
+    "comment": "Mapped per user request (ID 70291db1... corresponds to Lion Quiche)"
+  },
+  {
+    "city": "msk",
     "tildaName": "Лионский киш",
     "iikoProductId": "70291db1-a0fc-49df-a625-762c919cbf99",
     "tildaSku": "15648"
