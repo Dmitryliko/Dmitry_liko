@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "requestId": "7576c27c1c1bee01",
+  "city": "msk",
+  "mappedItems": 1,
+  "unmappedItems": [
+    {
+      "name": "Скандинавский",
+      "modifierText": "",
+      "raw": "{\"name\":\"Скандинавский\",\"quantity\":1,\"amount\":3420,\"price\":3420}"
+    }
+  ],
+  "iiko": {
+    "correlationId": "30e324db-eb17-4807-ba2d-e07595c87ed0",
+    "orderInfo": {
+      "id": "ddef93e7-62db-4987-9459-148ec2bd7f31",
+      "posId": "dc3bee2f-3d45-4eca-8308-980c4d3347b3",
+      "externalNumber": "DEBUG_SCANDI_1",
+      "organizationId": "6fd820ff-65a0-40d6-8309-83d6425aaf2e",
+      "timestamp": 1770321133205,
+      "creationStatus": "InProgress",
+      "errorInfo": null,
+      "order": null
+    }
+  }
+}
