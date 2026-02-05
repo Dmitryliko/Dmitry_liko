@@ -427,33 +427,40 @@ function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText
   const byCity = mapping.filter((m) => normalizeString(m.city) === cityNorm);
   if (!byCity.length) return null;
 
+  let candidates = [];
+
+  // 1. Find candidates by ID/SKU
   if (ids.length) {
     for (const idNorm of ids) {
-      const byId = byCity.find((m) => 
+      const matches = byCity.filter((m) => 
         normalizeString(m.tildaProductId) === idNorm || 
         normalizeString(m.tildaSku) === idNorm ||
         normalizeString(m.iikoProductId) === idNorm
       );
-      if (byId && byId.iikoProductId) return byId;
+      if (matches.length > 0) {
+          candidates = candidates.concat(matches);
+      }
     }
   }
 
-  // Find all candidates by name
-  const candidates = byCity.filter((m) => {
-    if (normalizeString(m.tildaName) !== nameNorm) return false;
+  // 2. If no ID candidates, find by Name
+  if (candidates.length === 0) {
+      candidates = byCity.filter((m) => {
+        if (normalizeString(m.tildaName) !== nameNorm) return false;
 
-    const mModRaw = m.tildaModifier || '';
-    const mMod = normalizeString(mModRaw);
-    if (!mMod && !modNorm) return true;
+        const mModRaw = m.tildaModifier || '';
+        const mMod = normalizeString(mModRaw);
+        if (!mMod && !modNorm) return true;
 
-    const mWeight = parseWeightKey(mModRaw);
-    if (mWeight && weightNorm) return normalizeString(mWeight) === weightNorm;
-    return mMod === modNorm;
-  });
+        const mWeight = parseWeightKey(mModRaw);
+        if (mWeight && weightNorm) return normalizeString(mWeight) === weightNorm;
+        return mMod === modNorm;
+      });
+  }
 
   if (candidates.length === 0) return null;
 
-  // Filter by price if provided and candidate has price limits
+  // 3. Filter by price
   if (price !== undefined && price !== null && price > 0) {
     const priceMatch = candidates.find(m => {
         // If mapping has minPrice/maxPrice, check it
@@ -462,7 +469,7 @@ function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText
             const max = m.maxPrice !== undefined ? m.maxPrice : Infinity;
             return price >= min && price <= max;
         }
-        return false; // If no price constraints, keep looking or fallback?
+        return false;
     });
 
     if (priceMatch) return priceMatch;
@@ -867,26 +874,11 @@ module.exports = async (req, res) => {
           weightKey: product.weightKey,
           price: product.price // Pass price for disambiguation
         });
+        
+        console.log(`[Lookup] Name: "${product.name}", SKU: "${product.tildaProductId}", Price: ${product.price} -> Found: ${found ? found.iikoProductId + (found.sizeId ? ' size:' + found.sizeId : '') : 'NULL'}`);
+
         if (found && found.iikoProductId) {
           targetIikoId = found.iikoProductId;
-        }
-
-        // HOTFIX: Explicit check for Czech Pie to ensure it works even if mapping file is stale
-        if (!targetIikoId && normalizeString(product.name).includes('чешский пирог')) {
-            targetIikoId = "4519eb01-8930-4538-a03d-fd84d9b6a7a3";
-            
-            // Determine size based on price (Small ~1610, Big ~2160)
-            const isSmall = product.price < 1900;
-            const sizeId = isSmall 
-                ? "b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8" // 18 cm (Small)
-                : "7c23e0c5-ef2e-4a16-8653-15918a7807d7"; // 24 cm (Big)
-
-            found = {
-                type: 'Compound',
-                iikoProductId: targetIikoId,
-                modifierSchemaId: "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
-                sizeId: sizeId
-            };
         }
       }
 
