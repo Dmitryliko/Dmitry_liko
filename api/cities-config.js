@@ -12,7 +12,7 @@ module.exports = {
       organizationId: "6fd820ff-65a0-40d6-8309-83d6425aaf2e",
       terminalGroupId: "16405536-0b9a-30e4-017e-dea16b460064",
       paymentTypeKind: 'Card',
-      fallbackProductId: '1a87e019-3dff-4e07-b9f1-73cf9140bdbf' // Морс Клюквенный (простой товар, чтобы не было ошибок с размерами)
+      fallbackProductId: '7d799f7e-11c1-43e5-8006-c0336bc28648' // Микс (1 кг) - используется как fallback для неизвестных наборов/товаров
     }
   }
 };
