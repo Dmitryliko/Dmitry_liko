@@ -657,7 +657,7 @@ function safeString(obj, key) {
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('X-Code-Version', '2026-02-05-v4-price-logic');
+  res.setHeader('X-Code-Version', 'Hotfix v4 (Full Size Mapping)');
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   const requestId = crypto.randomBytes(8).toString('hex');
