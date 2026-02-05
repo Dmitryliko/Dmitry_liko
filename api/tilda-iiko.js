@@ -734,6 +734,18 @@ module.exports = async (req, res) => {
       return res.status(400).json({ ok: false, requestId, error: 'Unknown city', city: effectiveCity });
     }
 
+    // RESTRICTION: Only process orders for Moscow ('msk')
+    if (normalizeString(effectiveCity) !== 'msk') {
+        console.log(`Skipping order for city '${effectiveCity}' (only 'msk' is allowed currently).`);
+        return res.status(200).json({ 
+            ok: true, 
+            requestId, 
+            skipped: true, 
+            reason: 'city_restriction',
+            message: `Order processing is currently restricted to Moscow only. City '${effectiveCity}' skipped.` 
+        });
+    }
+
     let paymentObj = body.payment || body.PAYMENT;
     if (typeof paymentObj === 'string') {
       try {
