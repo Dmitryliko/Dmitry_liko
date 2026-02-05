@@ -624,7 +624,7 @@ function safeString(obj, key) {
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('X-Code-Version', '2026-02-05-v2');
+  res.setHeader('X-Code-Version', '2026-02-05-v3-size-fix');
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   const requestId = crypto.randomBytes(8).toString('hex');
@@ -847,11 +847,18 @@ module.exports = async (req, res) => {
         // HOTFIX: Explicit check for Czech Pie to ensure it works even if mapping file is stale
         if (!targetIikoId && normalizeString(product.name).includes('чешский пирог')) {
             targetIikoId = "4519eb01-8930-4538-a03d-fd84d9b6a7a3";
+            
+            // Determine size based on price (Small ~1610, Big ~2160)
+            const isSmall = product.price < 1900;
+            const sizeId = isSmall 
+                ? "b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8" // 18 cm (Small)
+                : "7c23e0c5-ef2e-4a16-8653-15918a7807d7"; // 24 cm (Big)
+
             found = {
                 type: 'Compound',
                 iikoProductId: targetIikoId,
                 modifierSchemaId: "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
-                sizeId: "7c23e0c5-ef2e-4a16-8653-15918a7807d7"
+                sizeId: sizeId
             };
         }
       }
