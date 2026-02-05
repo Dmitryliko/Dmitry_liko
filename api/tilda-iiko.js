@@ -581,6 +581,8 @@ function buildOrderComment({
   if (deliveryType) lines.push(`Доставка: ${deliveryType}`);
   if (deliveryOverrideNote) lines.push(deliveryOverrideNote);
 
+  if (extraFields.userComment) lines.push(`Комментарий гостя: ${extraFields.userComment}`);
+
   const timeFields = [];
   if (extraFields.delivery_date) timeFields.push(`Дата: ${extraFields.delivery_date}`);
   if (extraFields.delivery_time) timeFields.push(`Время: ${extraFields.delivery_time}`);
@@ -792,7 +794,8 @@ module.exports = async (req, res) => {
       building: body.building,
       office: body.office,
       delivery_date: body.delivery_date,
-      delivery_time: body.delivery_time
+      delivery_time: body.delivery_time,
+      userComment: body.comment || body.COMMENT || body.comments || body.COMMENTS || body.Notes || body.notes
     };
 
     const deliveryTypeNorm = normalizeString(extraFields.delivery_type);
