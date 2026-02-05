@@ -278,7 +278,10 @@ function inferCityKey({ urlCity, projectId, pageId, projectIdToCity, pageIdToCit
   }
 
   const fromBody = normalizeString(bodyCity);
-  if (fromBody) return fromBody;
+  if (fromBody) {
+    if (fromBody === 'москва' || fromBody === 'moscow') return 'msk';
+    return fromBody;
+  }
 
   const refStr = referer ? String(referer) : '';
   if (refStr) {
