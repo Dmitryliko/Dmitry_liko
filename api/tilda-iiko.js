@@ -778,6 +778,13 @@ module.exports = async (req, res) => {
     let cityCfg = (citiesConfig.cities && citiesConfig.cities[effectiveCity]) || null;
 
     // Fallback logic restored to handle Pickup/Direct orders without explicit city
+    if (!cityCfg) {
+      console.log(`[CityInference] City '${effectiveCity}' not found in config. Force defaulting to 'msk'.`);
+      effectiveCity = 'msk';
+      cityCfg = citiesConfig.cities['msk'];
+    }
+
+    /*
     if (!cityCfg && defaultCityNorm && (!effectiveCity || effectiveCity !== defaultCityNorm)) {
       console.log(`[CityInference] City '${effectiveCity}' not found. Falling back to default '${defaultCityNorm}'.`);
       effectiveCity = defaultCityNorm;
@@ -792,6 +799,7 @@ module.exports = async (req, res) => {
         cityCfg = citiesConfig.cities[effectiveCity] || null;
       }
     }
+    */
 
     if (!cityCfg) {
       return res.status(400).json({ ok: false, requestId, error: 'Unknown city', city: effectiveCity });
