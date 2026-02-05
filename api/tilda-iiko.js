@@ -657,7 +657,7 @@ function safeString(obj, key) {
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('X-Code-Version', 'Hotfix v4 (Full Size Mapping)');
+  res.setHeader('X-Code-Version', 'Hotfix v5 (Mexican & Amsterdam Fix)');
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   const requestId = crypto.randomBytes(8).toString('hex');
