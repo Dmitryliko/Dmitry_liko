@@ -402,6 +402,27 @@ module.exports = [
   },
   {
     "city": "msk",
+    "tildaName": "Шотландский пирог",
+    "iikoProductId": "ce0c4db9-95c2-4e07-a468-8e4e63fd86ae",
+    "type": "Compound",
+    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+    "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+    "comment": "Added per user complaint about fallback to Mors"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Норвежская пицца",
+    "iikoProductId": "25072bcb-0335-4f46-9def-5a3ba1505fdb",
+    "comment": "Mapped to Пицца с красной рыбой"
+  },
+  {
+    "city": "msk",
+    "tildaName": "Морс Сливовый",
+    "iikoProductId": "7d3662c6-7b0d-4538-97d1-e4daee3668c5",
+    "tildaSku": "00128"
+  },
+  {
+    "city": "msk",
     "tildaName": "Остров Гулливера",
     "iikoProductId": "70291db1-a0fc-49df-a625-762c919cbf99",
     "tildaSku": "15648",
