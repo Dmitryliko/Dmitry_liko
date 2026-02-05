@@ -1,7 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-const citiesConfig = require('./cities-config');
+const citiesConfig = require('../lib/cities-config');
 
 async function fetchNomenclature() {
   const mskConfig = citiesConfig.cities.msk;

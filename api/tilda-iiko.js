@@ -717,9 +717,13 @@ module.exports = async (req, res) => {
     });
 
     const defaultCityNorm = normalizeString(citiesConfig.defaultCity);
-    let effectiveCity = cityKey || defaultCityNorm || 'default';
+    // STRICT MODE: Do not fallback to defaultCity if cityKey is missing.
+    // This ensures that only requests explicitly identified as 'msk' (or other configured cities) are processed.
+    let effectiveCity = cityKey; 
     let cityCfg = (citiesConfig.cities && citiesConfig.cities[effectiveCity]) || null;
 
+    // Fallbacks removed to prevent unknown projects from defaulting to Moscow
+    /*
     if (!cityCfg && defaultCityNorm && effectiveCity !== defaultCityNorm) {
       effectiveCity = defaultCityNorm;
       cityCfg = (citiesConfig.cities && citiesConfig.cities[effectiveCity]) || null;
@@ -732,6 +736,7 @@ module.exports = async (req, res) => {
         cityCfg = citiesConfig.cities[effectiveCity] || null;
       }
     }
+    */
 
     if (!cityCfg) {
       return res.status(400).json({ ok: false, requestId, error: 'Unknown city', city: effectiveCity });
