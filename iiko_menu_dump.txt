@@ -1,5 +1,5 @@
 --- MENU DUMP FROM IIKO API ---
-Generated at: 2026-02-05T11:16:01.418Z
+Generated at: 2026-02-05T11:20:04.094Z
 Format: [Group Name] Product Name | Price | ID | Type
 ---------------------------------------------------
 [Unknown Group] 1/4 С/д пирог с болгарским перцем, баклажанами и томатами | Price: 0 | ID: e51b309c-414c-401e-8901-166009072191 | Type: Modifier

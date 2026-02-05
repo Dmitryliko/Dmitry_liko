@@ -1,0 +1,25 @@
+API Endpoint: POST https://api-ru.iiko.services/api/1/nomenclature
+
+Request Body:
+{
+  "organizationId": "6fd820ff-65a0-40d6-8309-83d6425aaf2e"
+}
+
+Issue Description:
+The product "Чешский пирог" (SKU 18355) is missing from the standard nomenclature response (api/1/nomenclature), but it exists in the External Menu (api/1/nomenclature/external_menu) and is orderable.
+This prevents the integration from validating the product via the standard nomenclature.
+
+Product Details:
+Name: Чешский пирог
+SKU: 18355
+Type: Compound (Песочные сытные пироги)
+IDs found in external menu:
+- Product ID: 4519eb01-8930-4538-a03d-fd84d9b6a7a3
+- Size 24cm ID: 7c23e0c5-ef2e-4a16-8653-15918a7807d7
+- Size 18cm ID: b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8
+
+Curl Command (for verification):
+curl -X POST "https://api-ru.iiko.services/api/1/nomenclature" \
+ -H "Authorization: Bearer <TOKEN>" \
+ -H "Content-Type: application/json" \
+ -d '{ "organizationId": "6fd820ff-65a0-40d6-8309-83d6425aaf2e" }'
