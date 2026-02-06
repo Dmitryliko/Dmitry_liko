@@ -924,7 +924,8 @@ module.exports = async (req, res) => {
                 street: { 
                     name: "Самовывоз",
                     city: effectiveCity || ''
-                }
+                },
+                house: ''
             }
         };
     }
