@@ -279,7 +279,7 @@ function inferCityKey({ urlCity, projectId, pageId, projectIdToCity, pageIdToCit
 
   const fromBody = normalizeString(bodyCity);
   if (fromBody) {
-    if (fromBody === 'москва' || fromBody === 'moscow') return 'msk';
+    if (fromBody === 'москва' || fromBody === 'moscow' || fromBody.includes('москва') || fromBody.includes('moscow')) return 'msk';
     return fromBody;
   }
 
