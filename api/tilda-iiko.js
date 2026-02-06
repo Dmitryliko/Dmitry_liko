@@ -779,7 +779,19 @@ module.exports = async (req, res) => {
 
     // Fallback logic restored to handle Pickup/Direct orders without explicit city
     if (!cityCfg) {
-      console.log(`[CityInference] City '${effectiveCity}' not found in config. Force defaulting to 'msk'.`);
+      // STRICT FIX: If a city WAS inferred (e.g. 'krasnodar', 'spb') but has no config,
+      // do NOT force it to 'msk'. Skip it to prevent cross-city order leakage.
+      if (effectiveCity && normalizeString(effectiveCity) !== 'msk') {
+          console.log(`[CityFilter] City '${effectiveCity}' detected but not configured. Skipping (Strict Moscow Mode).`);
+          return res.status(200).json({ 
+              ok: true, 
+              skipped: true, 
+              reason: 'city_mismatch',
+              message: `Order for city '${effectiveCity}' rejected. Only 'msk' is allowed.` 
+          });
+      }
+
+      console.log(`[CityInference] No city inferred (empty). Defaulting to 'msk'.`);
       effectiveCity = 'msk';
       cityCfg = citiesConfig.cities['msk'];
     }
