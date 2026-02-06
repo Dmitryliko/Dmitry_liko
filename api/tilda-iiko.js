@@ -902,8 +902,7 @@ module.exports = async (req, res) => {
           street: {
             // Tilda sends full address string in "building" usually or "street"
             // We'll put the main part in street
-            name: extraFields.building || extraFields.city || 'Уточнить адрес',
-            city: extraFields.city || effectiveCity || ''
+            name: extraFields.building || extraFields.city || 'Уточнить адрес'
           },
           // Additional fields if available
           house: '', // Tilda often mixes house into the address string
@@ -922,8 +921,7 @@ module.exports = async (req, res) => {
         deliveryPoint = {
             address: {
                 street: { 
-                    name: "Можайское шоссе",
-                    city: "Москва"
+                    name: "Можайское шоссе"
                 },
                 house: "71",
                 flat: "",
@@ -1033,6 +1031,11 @@ module.exports = async (req, res) => {
       productsParsed
     });
 
+    let finalComment = comment;
+    if (orderServiceType === 'DeliveryByClient') {
+        finalComment += "\nСамовывоз: г. Москва, Можайское шоссе 71, ТЦ Дубрава";
+    }
+
     const externalNumber = tildaOrderId ? String(tildaOrderId).slice(0, 50) : String(Date.now());
 
     let token;
@@ -1057,7 +1060,7 @@ module.exports = async (req, res) => {
         deliveryPoint, // Add deliveryPoint to payload
         phone: sanitizePhone(extraFields.phone),
         customer: { name: extraFields.name ? String(extraFields.name) : 'Клиент' },
-        comment,
+        comment: finalComment,
         items: iikoItems
       }
     };
