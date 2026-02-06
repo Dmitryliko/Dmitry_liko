@@ -922,13 +922,14 @@ module.exports = async (req, res) => {
         deliveryPoint = {
             address: {
                 street: { 
-                    name: "Самовывоз",
-                    city: effectiveCity || ''
+                    name: "Можайское шоссе",
+                    city: "Москва"
                 },
-                house: '-',
-                flat: '',
-                entrance: '',
-                floor: ''
+                house: "71",
+                flat: "",
+                entrance: "",
+                floor: "",
+                comment: "ТЦ Дубрава (Самовывоз)"
             }
         };
     }
