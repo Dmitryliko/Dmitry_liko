@@ -886,6 +886,43 @@ module.exports = async (req, res) => {
     const deliveryOverrideNote = addressIncomplete
       ? 'ВНИМАНИЕ: запрошена доставка курьером, но адрес неполный. Создано как самовывоз, нужно уточнить адрес.'
       : '';
+    
+    // Address logic:
+    // If delivery (courier) -> use user address from fields
+    // If pickup -> use "Самовывоз" or restaurant address
+    let deliveryPoint = null;
+    if (orderServiceType === 'DeliveryByCourier') {
+      deliveryPoint = {
+        address: {
+          street: {
+            // Tilda sends full address string in "building" usually or "street"
+            // We'll put the main part in street
+            name: extraFields.building || extraFields.city || 'Уточнить адрес',
+            city: extraFields.city || effectiveCity || ''
+          },
+          // Additional fields if available
+          house: '', // Tilda often mixes house into the address string
+          flat: extraFields.office || '',
+          entrance: extraFields.entrance || '',
+          floor: extraFields.floor || '',
+          comment: extraFields.code ? `Домофон: ${extraFields.code}` : ''
+        },
+        comment: extraFields.userComment
+      };
+    } else {
+        // For Pickup (DeliveryByClient), iiko doesn't strictly require deliveryPoint,
+        // but to display something in the "Address" column, we can pass it.
+        // The user explicitly asked to write "Самовывоз" or the user's address.
+        // If it's Pickup, the user address might be irrelevant or empty, so we set "Самовывоз".
+        deliveryPoint = {
+            address: {
+                street: { 
+                    name: "Самовывоз",
+                    city: effectiveCity || ''
+                }
+            }
+        };
+    }
 
     const mapping = await loadMapping();
     const unmapped = [];
@@ -1006,6 +1043,7 @@ module.exports = async (req, res) => {
       order: {
         externalNumber,
         orderServiceType,
+        deliveryPoint, // Add deliveryPoint to payload
         phone: sanitizePhone(extraFields.phone),
         customer: { name: extraFields.name ? String(extraFields.name) : 'Клиент' },
         comment,
