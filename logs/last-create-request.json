@@ -2,22 +2,19 @@
   "organizationId": "6fd820ff-65a0-40d6-8309-83d6425aaf2e",
   "terminalGroupId": "16405536-0b9a-30e4-017e-dea16b460064",
   "order": {
-    "externalNumber": "TEST-CANADIAN-1770319342808",
+    "externalNumber": "TEST_MSK_1770364952547",
     "orderServiceType": "DeliveryByClient",
-    "phone": "+79991234567",
+    "phone": "+79990000000",
     "customer": {
-      "name": "Тест Канадский"
+      "name": "Test Client"
     },
-    "comment": "Город: msk\nTilda order: TEST-CANADIAN-1770319342808\nДоставка: Самовывоз\nСостав:\n- Канадский пирог x1",
+    "comment": "Город: msk\nTilda order: TEST_MSK_1770364952547\nГород (поле): Moscow\nСостав:\n- Морс Сливовый x1",
     "items": [
       {
-        "type": "Compound",
-        "primaryComponent": {
-          "productId": "504d154f-12bb-475b-a06c-eac7de5f4a20"
-        },
-        "productSizeId": "b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8",
+        "type": "Product",
+        "productId": "7d3662c6-7b0d-4538-97d1-e4daee3668c5",
         "amount": 1,
-        "price": 1228
+        "price": 100
       }
     ]
   }

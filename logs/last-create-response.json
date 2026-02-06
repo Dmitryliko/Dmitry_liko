@@ -1,11 +1,11 @@
 {
-  "correlationId": "36cb57e9-2236-4e0b-9bd5-29c3cc027a43",
+  "correlationId": "24126c73-5838-47b1-9e53-4fd6909c462e",
   "orderInfo": {
-    "id": "e1b63a48-0ef3-4b70-b53f-96439f2e8d65",
-    "posId": "09ac0d08-b601-4796-83de-27ae76896c6f",
-    "externalNumber": "TEST-CANADIAN-1770319342808",
+    "id": "eafd8e76-911f-4710-9b71-20c5e396ce74",
+    "posId": "683d8de6-4264-49fc-8539-412c3970e38c",
+    "externalNumber": "TEST_MSK_1770364952547",
     "organizationId": "6fd820ff-65a0-40d6-8309-83d6425aaf2e",
-    "timestamp": 1770322937826,
+    "timestamp": 1770368547741,
     "creationStatus": "InProgress",
     "errorInfo": null,
     "order": null

@@ -1044,14 +1044,16 @@ module.exports = async (req, res) => {
       order: {
         externalNumber,
         orderServiceType,
-        deliveryPoint, // Add deliveryPoint to payload
         phone: sanitizePhone(extraFields.phone),
         customer: { name: extraFields.name ? String(extraFields.name) : 'Клиент' },
         comment: finalComment,
-        items: iikoItems,
-        payments: null // Initialize payments
+        items: iikoItems
       }
     };
+
+    if (deliveryPoint) {
+      orderPayload.order.deliveryPoint = deliveryPoint;
+    }
 
     const isPaid = inferIsPaid({ body, paymentId });
     const payments =

@@ -1,5 +1,5 @@
 {
-  "revision": 1770276297484,
+  "revision": 1770301578286,
   "groups": [
     {
       "imageLinks": [],
@@ -6711,8 +6711,8 @@
         {
           "sizeId": "b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8",
           "price": {
-            "currentPrice": 980,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -6721,8 +6721,8 @@
         {
           "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
           "price": {
-            "currentPrice": 1450,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -6814,8 +6814,8 @@
         {
           "sizeId": "b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8",
           "price": {
-            "currentPrice": 1156,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -6824,8 +6824,8 @@
         {
           "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
           "price": {
-            "currentPrice": 1664,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -9544,8 +9544,8 @@
         {
           "sizeId": "b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8",
           "price": {
-            "currentPrice": 1250,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -9554,8 +9554,8 @@
         {
           "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
           "price": {
-            "currentPrice": 1700,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -10059,8 +10059,8 @@
         {
           "sizeId": "b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8",
           "price": {
-            "currentPrice": 990,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -10069,8 +10069,8 @@
         {
           "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
           "price": {
-            "currentPrice": 1200,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -10265,8 +10265,8 @@
         {
           "sizeId": "b4dd8e9b-832a-4ab9-8ddc-7f3a388d9ac8",
           "price": {
-            "currentPrice": 1401,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -10275,8 +10275,8 @@
         {
           "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
           "price": {
-            "currentPrice": 1974,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -11300,8 +11300,8 @@
         {
           "sizeId": null,
           "price": {
-            "currentPrice": 900,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -11352,8 +11352,8 @@
         {
           "sizeId": null,
           "price": {
-            "currentPrice": 900,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -11404,8 +11404,8 @@
         {
           "sizeId": null,
           "price": {
-            "currentPrice": 850,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -13822,8 +13822,8 @@
         {
           "sizeId": "18cfc8e4-9eb6-4570-afae-7a04fa39cb52",
           "price": {
-            "currentPrice": 1606,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -13832,8 +13832,8 @@
         {
           "sizeId": "07e2addd-1991-4f09-b157-65410c144cc1",
           "price": {
-            "currentPrice": 2403,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -15250,8 +15250,8 @@
         {
           "sizeId": "18cfc8e4-9eb6-4570-afae-7a04fa39cb52",
           "price": {
-            "currentPrice": 1606,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -15260,8 +15260,8 @@
         {
           "sizeId": "07e2addd-1991-4f09-b157-65410c144cc1",
           "price": {
-            "currentPrice": 2403,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -15498,8 +15498,8 @@
         {
           "sizeId": null,
           "price": {
-            "currentPrice": 990,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -15550,8 +15550,8 @@
         {
           "sizeId": null,
           "price": {
-            "currentPrice": 880,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -15602,8 +15602,8 @@
         {
           "sizeId": null,
           "price": {
-            "currentPrice": 990,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -15654,8 +15654,8 @@
         {
           "sizeId": null,
           "price": {
-            "currentPrice": 880,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -15706,8 +15706,8 @@
         {
           "sizeId": null,
           "price": {
-            "currentPrice": 1550,
-            "isIncludedInMenu": true,
+            "currentPrice": 0,
+            "isIncludedInMenu": false,
             "nextPrice": null,
             "nextIncludedInMenu": false,
             "nextDatePrice": null
@@ -17868,7 +17868,7 @@
       "paymentSubject": "ТОВАР",
       "id": "5fd69471-ed6d-4038-8cb5-861206243fe7",
       "code": "15640",
-      "name": "Белорусский пирог с картофелем и грибами",
+      "name": "Белорусский пирог",
       "description": "Шампиньоны, лук репчатый, морковь, масло подсолнечное, соль, перец черный, картофель, соус фирменный, сыр твердых сортов, тесто песочное фирменное (масло сливочное, мука пшеничная высший сорт, сода пищевая, уксус, сахар-песок, соль, яйцо куриное). Хранить при t=2-6С° не более 72 ч.",
       "additionalInfo": null,
       "tags": null,
@@ -17930,7 +17930,7 @@
       "paymentSubject": "ТОВАР",
       "id": "4627e8a3-652c-4dc4-a25c-2582d40e05cf",
       "code": "15642",
-      "name": "Брюссельский пирог с брокколи, шпинатом и цветной капустой",
+      "name": "Брюссельский пирог",
       "description": "Брокколи, шпинат, капуста цветная, лук репчатый, соль, перец черный, соус фирменный, сыр твердых сортов, тесто песочное фирменное (масло сливочное, мука пшеничная высший сорт, сода пищевая, уксус, сахар-песок, соль, яйцо куриное). Хранить при t=2-6С° не более 72 ч.",
       "additionalInfo": null,
       "tags": null,
