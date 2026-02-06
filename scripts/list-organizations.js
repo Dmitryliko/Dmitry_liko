@@ -1,5 +1,5 @@
 const axios = require('axios');
-const citiesConfig = require('./cities-config');
+const citiesConfig = require('../lib/cities-config');
 
 async function listOrganizations() {
   const mskConfig = citiesConfig.cities.msk;
