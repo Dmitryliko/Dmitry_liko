@@ -1048,7 +1048,8 @@ module.exports = async (req, res) => {
         phone: sanitizePhone(extraFields.phone),
         customer: { name: extraFields.name ? String(extraFields.name) : 'Клиент' },
         comment: finalComment,
-        items: iikoItems
+        items: iikoItems,
+        payments: null // Initialize payments
       }
     };
 
