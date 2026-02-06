@@ -424,7 +424,12 @@ function findIikoProduct({ mapping, cityKey, tildaProductIds, name, modifierText
   const modNorm = normalizeString(modifierText);
   const weightNorm = normalizeString(weightKey);
 
-  const byCity = mapping.filter((m) => normalizeString(m.city) === cityNorm);
+  // Allow city-specific mappings AND global mappings (empty city or '*')
+  const byCity = mapping.filter((m) => {
+      const c = normalizeString(m.city);
+      return c === cityNorm || c === '' || c === '*';
+  });
+
   if (!byCity.length) return null;
 
   let candidates = [];
@@ -972,7 +977,8 @@ module.exports = async (req, res) => {
                iikoItems.push({
                 type: 'Compound',
                 primaryComponent: {
-                    productId: targetIikoId
+                    productId: targetIikoId,
+                    amount: 1 // Fix: Added amount to primaryComponent
                 },
                 productSizeId: found.sizeId,
                 amount: product.quantity,
