@@ -914,22 +914,9 @@ module.exports = async (req, res) => {
         comment: extraFields.userComment
       };
     } else {
-        // For Pickup (DeliveryByClient), iiko doesn't strictly require deliveryPoint,
-        // but to display something in the "Address" column, we can pass it.
-        // The user explicitly asked to write "Самовывоз" or the user's address.
-        // If it's Pickup, the user address might be irrelevant or empty, so we set "Самовывоз".
-        deliveryPoint = {
-            address: {
-                street: { 
-                    name: "Можайское шоссе"
-                },
-                house: "71",
-                flat: "",
-                entrance: "",
-                floor: "",
-                comment: "ТЦ Дубрава (Самовывоз)"
-            }
-        };
+        // For Pickup (DeliveryByClient), do NOT send deliveryPoint.
+        // This restores the "previous behavior" where Pickup worked (without address).
+        deliveryPoint = null;
     }
 
     const mapping = await loadMapping();
