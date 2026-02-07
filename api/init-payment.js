@@ -12,10 +12,27 @@ const logDebug = (prefix, data) => {
       fs.mkdirSync(logsDir, { recursive: true });
     }
     
+    // SECURITY: Mask PII
+    let dataToLog = data;
+    try {
+        const obj = JSON.parse(JSON.stringify(data));
+        if (obj.phone) obj.phone = "***";
+        if (obj.Name) obj.Name = "***";
+        if (obj.street) obj.street = "***";
+        // Tilda fields often have generic names
+        const piiKeys = ['phone', 'name', 'email', 'address', 'comment', 'description'];
+        Object.keys(obj).forEach(key => {
+            if (piiKeys.some(k => key.toLowerCase().includes(k))) {
+                obj[key] = "***";
+            }
+        });
+        dataToLog = obj;
+    } catch (_) {}
+
     const filename = `${prefix}-${timestamp}.json`;
     fs.writeFileSync(
       path.join(logsDir, filename), 
-      JSON.stringify(data, null, 2)
+      JSON.stringify(dataToLog, null, 2)
     );
     console.log(`Logged ${prefix} to ${filename}`);
   } catch (e) {

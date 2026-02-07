@@ -11,8 +11,37 @@ function logDebug(name, data) {
     if (!fs.existsSync(logDir)) {
       fs.mkdirSync(logDir, { recursive: true });
     }
+    
+    // SECURITY: Mask PII before logging
+    let dataToLog = data;
+    try {
+        const obj = JSON.parse(JSON.stringify(data));
+        
+        // Mask iiko order structure
+        if (obj.order) {
+            if (obj.order.phone) obj.order.phone = "***";
+            if (obj.order.customer) {
+                if (obj.order.customer.name) obj.order.customer.name = "***";
+                if (obj.order.customer.phone) obj.order.customer.phone = "***";
+            }
+            if (obj.order.comment) obj.order.comment = "***";
+            if (obj.order.deliveryPoint) obj.order.deliveryPoint = "***";
+        }
+        
+        // Mask Tilda/General fields
+        if (obj.phone) obj.phone = "***";
+        if (obj.Name) obj.Name = "***";
+        if (obj.city) obj.city = "***";
+        if (obj.street) obj.street = "***";
+        
+        dataToLog = obj;
+    } catch (parseErr) {
+        // If cloning fails, fallback to simple string but avoid logging potential PII raw
+        dataToLog = { error: "Data could not be masked safely" };
+    }
+
     const filePath = path.join(logDir, `${name}.json`);
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    fs.writeFileSync(filePath, JSON.stringify(dataToLog, null, 2));
   } catch (e) {
     console.error(`Failed to write debug log ${name}:`, e.message);
   }
