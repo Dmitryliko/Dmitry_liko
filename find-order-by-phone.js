@@ -1,5 +1,5 @@
 const axios = require('axios');
-const citiesConfig = require('./api/cities-config');
+const citiesConfig = require('./lib/cities-config');
 
 async function findOrder() {
   const city = citiesConfig.cities.msk;
@@ -8,7 +8,7 @@ async function findOrder() {
     return;
   }
 
-  const phone = '+79045501567';
+  const phone = '+79154958685';
 
   try {
     console.log('Getting token...');
@@ -46,20 +46,39 @@ async function findOrder() {
     
     for (const g of groups) {
       const orders = (g && g.orders) || [];
-      for (const order of orders) {
-        foundCount++;
-        console.log('--------------------------------------------------');
-        console.log(`Order ID (UUID): ${order.id}`);
-        console.log(`External Number: ${order.externalNumber}`);
-        console.log(`Created At: ${order.creationDate}`);
-        console.log(`Status: ${order.status}`);
-        if (order.items) {
-            console.log('Items:');
-            order.items.forEach(item => {
-                console.log(` - ${item.productName} x${item.amount}`);
-            });
+      const orderIds = orders.map(o => o.id);
+      
+      if (orderIds.length > 0) {
+        console.log(`Found ${orderIds.length} orders. Fetching details...`);
+        const detailsRes = await axios.post(
+            'https://api-ru.iiko.services/api/1/deliveries/by_id',
+            {
+                organizationId: city.organizationId,
+                orderIds: orderIds
+            },
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        );
+        
+        const detailedOrders = (detailsRes.data && detailsRes.data.orders) || [];
+        console.log('Detailed Response:', JSON.stringify(detailedOrders[0], null, 2));
+        
+        for (const o of detailedOrders) {
+             foundCount++;
+             console.log('--------------------------------------------------');
+             console.log('Order ID (UUID):', o.id);
+             console.log('External Number:', o.externalNumber);
+             console.log('Creation Date:', o.creationDate);
+             console.log('Order Type:', o.orderServiceType);
+             console.log('Source Key:', o.sourceKey); // This often indicates source (e.g., 'tilda', 'api')
+             console.log('Customer:', o.customer ? o.customer.name : 'N/A');
+             console.log('Phone:', o.customer ? o.customer.phone : 'N/A');
+             console.log('Delivery Point:', o.deliveryPoint ? o.deliveryPoint.address : 'N/A');
+             console.log('Comment:', o.comment);
+             console.log('Items:', JSON.stringify(o.items.map(i => `${i.productName} x${i.amount}`), null, 2));
+             console.log('--------------------------------------------------');
         }
-        console.log('--------------------------------------------------');
       }
     }
 

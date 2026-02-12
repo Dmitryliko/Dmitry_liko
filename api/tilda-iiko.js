@@ -708,13 +708,25 @@ function safeString(obj, key) {
 
 module.exports = async (req, res) => {
   // Set code version header for debugging
-    res.setHeader('X-Code-Version', 'Hotfix v12 (Compound Structure Fix + Canadian/Czech Mapping)');
+    res.setHeader('X-Code-Version', 'Hotfix v13 (IP Logging + Security)');
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   const requestId = crypto.randomBytes(8).toString('hex');
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
   try {
     const body = coerceBody(req.body);
+    
+    // Log incoming webhook with IP for security audit
+    logDebug('incoming-webhook', { 
+        ...body, 
+        _meta: { 
+            ip, 
+            userAgent: req.headers['user-agent'],
+            timestamp: new Date().toISOString()
+        } 
+    });
+
     const urlObj = new URL(req.url, 'http://localhost');
 
     const bodyKeys = Object.keys(body || {});
@@ -910,7 +922,8 @@ module.exports = async (req, res) => {
       office: body.office,
       delivery_date: body.delivery_date,
       delivery_time: body.delivery_time,
-      userComment: body.comment || body.COMMENT || body.comments || body.COMMENTS || body.Notes || body.notes
+      userComment: body.comment || body.COMMENT || body.comments || body.COMMENTS || body.Notes || body.notes,
+      promoCode: body.promocode || body.PROMOCODE || body.promo_code || body.coupon || body.COUPON || (paymentObj && (paymentObj.promocode || paymentObj.coupon)) || ''
     };
 
     const deliveryTypeNorm = normalizeString(extraFields.delivery_type);
@@ -1082,6 +1095,13 @@ module.exports = async (req, res) => {
 
     if (deliveryPoint) {
       orderPayload.order.deliveryPoint = deliveryPoint;
+    }
+
+    if (extraFields.promoCode) {
+      orderPayload.order.loyaltyInfo = {
+        coupon: String(extraFields.promoCode).trim()
+      };
+      console.log(`[Loyalty] Applying promo code: ${extraFields.promoCode}`);
     }
 
     const isPaid = inferIsPaid({ body, paymentId });

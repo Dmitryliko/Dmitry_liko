@@ -1,8 +1,0 @@
-{
-  "message": "Request failed with status code 400",
-  "response": {
-    "correlationId": "604a31a7-b13b-48dd-b466-315f450ad82a",
-    "errorDescription": "Required property 'amount' not found in JSON. Path '', line 13, position 7.",
-    "error": "INVALID_BODY_JSON_FORMAT"
-  }
-}

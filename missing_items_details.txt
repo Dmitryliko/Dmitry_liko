@@ -1,0 +1,797 @@
+        }
+    ],
+    "customerTagGroups": [],
+    "revision": 1770301380,
+    "formatVersion": 2,
+    "id": 62778,
+    "name": "Меню действует",
+    "description": "",
+    "buttonImageUrl": null,
+    "intervals": [],
+    "itemCategories": [
+        {
+            "id": "d46512f5-41a6-4fe1-b964-52c59145ef6c",
+            "name": "Песочные сытные пироги",
+            "description": "",
+            "buttonImageUrl": null,
+            "headerImageUrl": null,
+            "iikoGroupId": null,
+            "items": [
+                {
+                    "sku": "18360",
+                    "name": "Пирог Дублин ",
+                    "description": "Состав: начинка (говяжий язык (язык, лук репчатый, специи, темное пиво)), морковь, шампинионы), тесто (яйцо куриное, мука пшеничная, масло сливочное, саха-песок, соль, уксус, сода). Срок годности: 48 ч. при температуре 2−4°",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "18360-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 0.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
+--
+                    "itemId": "77c7972f-f80c-4461-b379-58fbcfd74709",
+                    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+                    "taxCategory": null,
+                    "modifierSchemaName": "Размер",
+                    "type": "DISH",
+                    "canBeDivided": false,
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": null,
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "18355",
+                    "name": "Чешский пирог ",
+                    "description": "Состав: начинка (утка конфи (филе утиное, лук репчатый, специи)), томаты Черри, капуста белокочанная, капуста квашенная, чернослив), тесто (яйцо куриное, мука пшеничная, масло сливочное, саха-песок, соль, уксус, сода), соус брусничный (брусника, сахар-песок, крахмал, сок лимона, розмарин). Срок годности: 48 ч. при температуре 2−4°",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "18355-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 14.255,
+                                "proteins": 5.687,
+                                "carbs": 15.129,
+                                "energy": 211.558,
+                                "organizations": [],
+--
+                    "itemId": "4519eb01-8930-4538-a03d-fd84d9b6a7a3",
+                    "modifierSchemaId": "0d0d70f2-ce97-4f83-9ff4-0a49cc31029b",
+                    "taxCategory": null,
+                    "modifierSchemaName": "Размер",
+                    "type": "DISH",
+                    "canBeDivided": false,
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": null,
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "18346",
+                    "name": "Онежский пирог",
+                    "description": "Состав: тесто (яйцо куриное, мука пшеничная, масло сливочное, саха-песок, соль, уксус, сода), начинка (рыба семейства окуневых, картофель, лук репчатый, масло сливочное, укроп), соус (сливки животные, яйцо куриное, крахмал картофельный), сыр сычужный полутвердый.Пищевая ценность продукта на 100 г: Калорийность 247 ккал Белки 6,9 г Жиры 16,3 г Углеводы 15,0 г Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка \nУточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров\n",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "18346-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 470.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": null,
+                    "paymentSubjectCode": "7",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2118270000014",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15650",
+                    "name": "Лоранский пирог с курицей и ароматными грибами",
+                    "description": "Состав: начинка (филе куриное, шампиньоны, морковь, лук репчатый), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), соус (сливки животные, яйцо куриное, сыр).   Срок годности: 48 ч при температуре 4±2°C.  Пищевая ценность продукта на 100 г: Калорийность - 200 ккал Белки - 9,5 г Жиры - 11,0 г Углеводы - 17,0 г  Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15650-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 900.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2116636000012",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15661",
+                    "name": "Турецкий нутовый пирог с томатами ",
+                    "description": "Состав: начинка (нут, шампиньоны, морковь, лук репчатый, перец сладкий, томаты), тесто (масло сливочное, мука ржаная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), соус (сливки животные, яйцо куриное, сыр), петрушка.  Срок годности: 48 ч. при температуре 4±2°C.    Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15661-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 900.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 6.0,
+                                "proteins": 4.0,
+                                "carbs": 14.0,
+                                "energy": 134.0,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115661000011",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15660",
+                    "name": "Сибирский русский с красной рыбой и рисом",
+                    "description": "Состав: начинка (рыба семейства лососевых, рис, лук репчатый, масло сливочное), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)).   Срок годности: 48 ч при температуре 4±2°C.   Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15660-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 11.0,
+                                "proteins": 3.0,
+                                "carbs": 19.0,
+                                "energy": 198.2,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115644000014",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15663",
+                    "name": "Шведский пирог с картошечкой и копченой грудинкой ",
+                    "description": "Состав: начинка (картофель, карбонад свиной, грудинка свиная, огурцы маринованные, лук репчатый, чеснок), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), соус (сливки животные, яйцо куриное, сыр).   Срок годности: 48 ч. при температуре 4±2°C.   Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15663-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 900.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 17.7,
+                                "proteins": 5.3,
+                                "carbs": 14.3,
+                                "energy": 238.7,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115645000013",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15652",
+                    "name": "Мексиканский пирог с фаршем, фасолью, кукурузой и перцем чили",
+                    "description": "Состав: начинка (фарш говяжий и свиной, фасоль, кукуруза, морковь, лук репчатый, сладкий перец, томаты, перец чили), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), соус (сливки животные, мука пшеничная, сыр), перец чили.   Срок годности: 48 ч при температуре 4±2°C.     Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15652-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 900.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 13.8,
+                                "proteins": 7.8,
+                                "carbs": 15.5,
+                                "energy": 218.1,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115642000016",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15662",
+                    "name": "Украинский пирог с капустой и яйцом",
+                    "description": "Состав: начинка (капуста белокочанная, яйцо куриное, морковь, лук репчатый), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)).   Срок годности: 48 ч. при температуре 4±2°C.   Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров.",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15662-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 23.4,
+                                "proteins": 4.6,
+                                "carbs": 17.6,
+                                "energy": 300.4,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2118329000019",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15554",
+                    "name": "Шотландский пирог с индейкой и картофелем",
+                    "description": "Состав: начинка (филе индейки, картофель, лук репчатый), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), соус (сливки животные, яйцо куриное, сыр).   Срок годности: 72 ч. при температуре 4±2°C.  Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров Углеводы - 21,0 г ",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15554-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 11.53,
+                                "proteins": 4.29,
+                                "carbs": 15.4,
+                                "energy": 176.8,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115646000012",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15657",
+                    "name": "Норвежский киш с красной рыбой, брокколи в сливочной заливке",
+                    "description": "Состав: начинка (брокколи, рыба семейства лососевых, томаты черри), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), соус (сливки животные, яйцо куриное, сыр).   Срок годности: 48 ч при температуре 4±2°C.    Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15657-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 899.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 14.255,
+                                "proteins": 5.687,
+                                "carbs": 15.129,
+                                "energy": 211.558,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115657000018",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15648",
+                    "name": "Лионский киш с курочкой и помидорками черри",
+                    "description": "Состав: начинка (филе куриное, морковь, лук репчатый, томаты), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), соус (сливки животные, яйцо куриное, сыр) , петрушка.  Срок годности: 48 ч. при температуре 4±2°C.  Пищевая ценность продукта на 100 г: Калорийность - 210 ккал Белки - 8,5 г Жиры - 12,0 г Углеводы - 17,0 г   Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15648-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 13.778,
+                                "proteins": 10.183,
+                                "carbs": 15.215,
+                                "energy": 225.593,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115648000010",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15655",
+                    "name": "Мюнхенский пирогс колбасками",
+                    "description": "Состав: начинка (картофель, колбаски охотничьи, маслины, томаты), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), соус (сливки животные, яйцо куриное, сыр), лук зеленый.   Срок годности: 48 ч при температуре 4±2°C.  Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15655-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [],
+                            "sizeId": "7c23e0c5-ef2e-4a16-8653-15918a7807d7",
+                            "nutritionPerHundredGrams": {
+                                "fats": 12.743,
+                                "proteins": 5.514,
+                                "carbs": 14.354,
+                                "energy": 194.162,
+                                "organizations": [],
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115625000019",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15629",
+                    "name": "Лондонский тыквенный пирог",
+                    "description": "Состав: начинка (тыква, молоко сгущенное, курага, яйцо куриное, сахар белый, ванилин,) тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)), семечки  тыквенные.   Срок годности: 48 ч. при температуре 4±2°C.  Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15629-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115605000015",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15631",
+                    "name": "Польский пирог с маком и творожным сыром",
+                    "description": "Состав: начинка (сыр творожный, сметана, яйцо куриное, мак, сахар белый), тесто (масло сливочное, мука пшеничная, яйцо куриное, сахар белый, соль, уксус, (сода пищевая)).   Срок годности: 48 ч. при температуре 4±2°C. Рекомендуем резать на кусочки: по весу 500±50гр. на 4 кусочка  по весу 850±50гр. на 8 кусочка  Уточнения:  Вес 500±50гр. - Ø пирога ≈ 18 сантиметров  Вес 850±50гр. - Ø пирога ≈ 24 сантиметров",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15631-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115631000010",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15633",
+                    "name": "Румынский пирог с ТВОРОГОМ и ЧЕРНОЙ СМОРОДИНОЙ",
+                    "description": "творог натуральный, смородина свежемороженая, сахар, крахмал, мука пшеничная высшего сорта, масло сливочное 82,5%, яйцо куриное, соль, сода, уксус. Хранить при t=2-6С° не более 72 ч.",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15633-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2118326000012",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15635",
+                    "name": "Французский пирог с грушей и сыром Дорблю",
+                    "description": "груша свежая, молоко пастеризованное, сыр с голубой плесенью, мука пшеничная высшего сорта, масло сливочное 82,5%, яйцо куриное, сахар, соль, сода, уксус, ванилин. Хранить при t=2-6С° не более 72 ч.",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15635-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2115635000016",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "18140",
+                    "name": "Швейцарский пирог с ФИСТАШКОЙ и МАЛИНОЙ",
+                    "description": " Сливочный сыр, сливки животного происхождения, сахар, яйцо куриное, малина свжемороженная, фисташковая паста, ядро фисташки, соль, фирменное песочное тесто. Хранить при t=2-6С° не более 72 ч.",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "18140-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
+--
+                    "canSetOpenPrice": false,
+                    "useBalanceForSell": false,
+                    "measureUnit": "порц",
+                    "productCategoryId": "16405536-0b9a-30e4-017f-1265bed779c9",
+                    "customerTagGroups": [],
+                    "paymentSubject": "COMMODITY",
+                    "paymentSubjectCode": "1",
+                    "outerEanCode": null,
+                    "isMarked": false,
+                    "isHidden": false,
+                    "barcodes": [
+                        {
+                            "barcode": "2116563000017",
+                            "container": null,
+                            "productFiscalCode": null
+                        }
+                    ],
+                    "orderItemType": "Compound"
+                },
+                {
+                    "sku": "15637",
+                    "name": "Чикагский брауни шоколадный пирог с брусникой и грецким орехом",
+                    "description": "шоколад Бельгийский 72%, брусника натуральная, орех грецкий, яйцо куриное, мука пшеничная высшего сорта, масло сливочное 82,5%, яйцо, сахар, соль. Хранить при t=2-6С° не более 72 ч.",
+                    "allergens": [],
+                    "tags": [],
+                    "labels": [],
+                    "itemSizes": [
+                        {
+                            "sku": "15637-24 см (большой)",
+                            "sizeCode": "24 см (большой)",
+                            "sizeName": "24 см (стандарт)",
+                            "isDefault": true,
+                            "portionWeightGrams": 950.0,
+                            "itemModifierGroups": [
+                                {
+                                    "name": "Дополнительно",
+                                    "description": "",
+                                    "restrictions": {
+                                        "minQuantity": 0,
+                                        "maxQuantity": 4,
+                                        "freeQuantity": 0,
